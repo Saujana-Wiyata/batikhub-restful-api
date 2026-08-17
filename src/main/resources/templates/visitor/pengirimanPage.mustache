@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BatikHub - Status Pengiriman</title>
+  <!-- Menggunakan Tailwind CSS via CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Lucide Icons untuk ikon modern -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body class="bg-[#FBF9F4] text-stone-800 antialiased">
+
+  <!-- NAVBAR -->
+  {{> visitor/Navbar/navbar}}
+
+  <!-- KONTEN UTAMA HALAMAN PENGIRIMAN -->
+  <main class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+    
+    <!-- Header Judul Halaman -->
+    <div class="mb-8 space-y-2">
+      <h1 class="text-2xl font-serif font-bold text-emerald-950 flex items-center gap-2">
+        <i data-lucide="package-check" class="text-amber-600 w-7 h-7"></i> Melacak Pengiriman
+      </h1>
+      <p class="text-sm text-stone-500">Pantau perjalanan kain dan busana batik pesanan Anda yang sedang menuju alamat rumah.</p>
+    </div>
+
+    <!-- DAFTAR BARANG DALAM PERJALANAN -->
+    <div class="space-y-6">
+
+      <!-- Kartu Pesanan 1 -->
+       {{#delivery}}
+      <div class="bg-white rounded-2xl border border-stone-200/80 shadow-sm overflow-hidden">
+        <!-- Bagian Atas Kartu -->
+        <div class="bg-stone-50/70 border-b border-stone-100 px-4 sm:px-6 py-3.5 flex flex-wrap justify-between items-center gap-2 text-xs text-stone-500">
+          <div class="flex flex-wrap items-center gap-x-4 gap-y-1">
+            <span class="font-medium text-stone-700">Kode Produk: <span class="font-mono text-emerald-800 font-semibold">{{idProduk}}</span></span>
+            <span class="text-stone-300">|</span>
+            <span class="font-medium text-stone-700 flex items-center gap-1">
+              No. Pengiriman: <span class="font-mono text-amber-800 font-bold tracking-wide">{{idPengiriman}}</span>
+            </span>
+            <span class="hidden sm:inline text-stone-300">|</span>
+            <span class="flex items-center gap-1"><i data-lucide="calendar" class="w-3.5 h-3.5 text-stone-400"></i> Belanja: {{purchaseDate}}</span>
+          </div>
+          <!-- Status Badge (Dalam Perjalanan) -->
+          <span class="inline-flex items-center gap-1 bg-emerald-50 text-emerald-700 px-3 py-1 rounded-full font-medium">
+            <i data-lucide="truck" class="w-3 h-3 animate-pulse"></i> Dalam Perjalanan
+          </span>
+        </div>
+
+        <!-- Bagian Tengah Kartu -->
+        <div class="p-4 sm:p-6 flex flex-col sm:flex-row gap-4 items-start sm:items-center justify-between">
+          <div class="flex gap-4">
+            <!-- Mini Thumbnail -->
+            <div class="w-16 h-16 sm:w-20 sm:h-20 bg-gradient-to-br from-emerald-900 to-amber-900 rounded-xl flex items-center justify-center text-amber-200/20 flex-shrink-0">
+              <i data-lucide="shirt" class="w-8 h-8"></i>
+            </div>
+            <!-- Identitas Produk -->
+            <div class="space-y-1">
+              <h2 class="font-semibold text-stone-800 text-sm sm:text-base hover:text-emerald-800 transition-colors">{{produkName}}</h2>
+              <p class="text-xs text-emerald-800 font-medium">$ {{hargaPerProduk}}</p>
+              <p class="text-xs text-stone-400">Jumlah Pembelian: <span class="text-stone-700 font-medium">{{jmlhPembelian}} Pcs</span></p>
+            </div>
+          </div>
+
+          <!-- Total Harga & Estimasi Tiba -->
+          <div class="w-full sm:w-auto pt-4 sm:pt-0 border-t sm:border-t-0 border-stone-100 flex sm:flex-col justify-between sm:text-right items-center sm:items-end gap-1">
+            <div>
+              <p class="text-[11px] text-stone-400 uppercase tracking-wider">Total Belanja</p>
+              <p class="text-sm font-bold text-stone-800">$ {{totalharga}}</p>
+            </div>
+            <div class="bg-amber-500/10 border border-amber-500/20 px-3 py-1.5 rounded-xl text-left sm:text-right mt-1">
+              <p class="text-[10px] text-amber-800 font-medium">Estimasi Tiba (Arrival):</p>
+              <p class="text-xs font-semibold text-amber-900">{{arrivalDate}}</p>
+            </div>
+
+            <form action="/deletetransaksi" method="post" class="w-full sm:w-auto mt-1">
+              <input type="hidden" name="idTransaksi" value="{{idPengiriman}}">
+              <button type="submit" 
+                      class="w-full sm:w-auto flex items-center justify-center gap-1.5 px-4 py-2 bg-emerald-800 hover:bg-emerald-950 text-white rounded-xl text-xs font-medium transition-all shadow-sm active:scale-95">
+                <i data-lucide="check-circle" class="w-3.5 h-3.5"></i>
+                <span>Sudah Diterima</span>
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+      {{/delivery}}
+      
+
+    </div>
+
+  </main>
+
+  <!-- Script untuk inisialisasi Lucide Icons -->
+  <script>
+    lucide.createIcons();
+  </script>
+</body>
+</html>

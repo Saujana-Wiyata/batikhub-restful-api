@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BatikHub - Konfirmasi Pembelian</title>
+  <!-- Menggunakan Tailwind CSS via CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Lucide Icons untuk ikon modern -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body class="bg-[#FBF9F4] text-stone-800 antialiased min-h-screen flex flex-col justify-between">
+
+  <!-- NAVBAR UTAMA -->
+  <nav class="bg-white border-b border-stone-200/60 shadow-sm w-full sticky top-0 z-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-20">
+        <!-- Logo -->
+        <div class="flex-shrink-0 flex items-center">
+          <a href="#" class="text-2xl font-serif font-bold text-emerald-900 flex items-center gap-2 tracking-wide">
+            <i data-lucide="sparkles" class="w-6 h-6 text-amber-600"></i>
+            Batik<span class="text-amber-700 font-sans font-medium text-xl">Hub</span>
+          </a>
+        </div>
+        <!-- Menu Kembali -->
+        <div class="flex items-center gap-4">
+          <a href="/findproduct" class="text-xs font-medium text-stone-500 hover:text-emerald-800 transition-colors flex items-center gap-1">
+            <i data-lucide="shopping-bag" class="w-3.5 h-3.5"></i> Kembali Belanja
+          </a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- KONTEN UTAMA PEMBELIAN -->
+  <main class="max-w-2xl mx-auto w-full px-4 sm:px-6 lg:px-8 py-10 flex-grow">
+    
+    <!-- CARD UTAMA TRANSAKSI -->
+    <form class="bg-white rounded-2xl border border-stone-200/80 shadow-sm overflow-hidden" 
+    action="/proccesspurcaheseproduct" method="POST">
+      
+      <!-- Header -->
+      <div class="px-6 py-5 bg-gradient-to-r from-emerald-900 to-emerald-800 text-white flex items-center gap-2.5">
+        <i data-lucide="shopping-cart" class="w-5 h-5 text-amber-400"></i>
+        <div>
+          <h2 class="text-sm font-bold uppercase tracking-wider">Konfirmasi Pembelian Barang</h2>
+          <p class="text-[11px] text-emerald-100/80">Tentukan jumlah barang sebelum melakukan pembayaran.</p>
+        </div>
+      </div>
+
+      <div class="p-6 sm:p-8 space-y-6">
+        
+        <!-- DETAIL PRODUK & HARGA SATUAN -->
+        <div class="flex flex-col sm:flex-row gap-4 p-4 bg-stone-50 rounded-xl border border-stone-200/60 items-center">
+          <!-- Thumbnail Gambar -->
+          <div class="w-20 h-20 bg-stone-200 rounded-lg flex flex-col items-center justify-center text-stone-400 flex-shrink-0 border border-stone-300 overflow-hidden">
+            <img src="data:image/png;base64,{{produkId.gambar}}" 
+             class="w-full h-full object-cover">
+          </div>
+          <!-- Info Teks -->
+          <div class="w-full space-y-1 text-center sm:text-left">
+            <h3 class="text-sm font-bold text-stone-800">{{produkId.nama}}</h3>
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-1 pt-1 border-t border-stone-200/60 mt-1">
+              <span class="text-xs text-stone-400">Harga Satuan:</span>
+              <span class="text-sm font-bold text-emerald-800">$ {{produkId.harga}}</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- DATA ALAMAT & PENERIMA (STATIS / READ-ONLY) -->
+        <div class="space-y-3 pt-2 bg-stone-50/40 p-4 rounded-xl border border-stone-100">
+          <h4 class="text-xs font-bold text-stone-400 uppercase tracking-wider flex items-center gap-1.5 mb-2">
+            <i data-lucide="map-pin" class="w-3.5 h-3.5 text-amber-600"></i> Detail Pengiriman & Lokasi
+          </h4>
+          
+          <!-- Alamat Asal Toko -->
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-1 sm:gap-2 text-xs border-b border-stone-200/60 pb-3">
+            <span class="text-stone-400 font-medium">Alamat Asal Toko:</span>
+            <span class="sm:col-span-2 text-stone-700 font-medium leading-relaxed">
+              Pusat Grosir Batik Kampoeng Laweyan, Blok B No. 4, Kec. Laweyan, Kota Surakarta, Jawa Tengah
+            </span>
+          </div>
+
+          <!-- Nama Penerima -->
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-1 sm:gap-2 text-xs border-b border-stone-200/60 py-2">
+            <span class="text-stone-400 font-medium">Nama Penerima:</span>
+            <span class="sm:col-span-2 text-stone-700 font-bold">{{produkId.memberName}}</span>
+          </div>
+
+          <!-- Alamat Tujuan Kirim -->
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-1 sm:gap-2 text-xs pt-1">
+            <span class="text-stone-400 font-medium">Alamat Tujuan:</span>
+            <span class="sm:col-span-2 text-stone-700 leading-relaxed">
+              {{produkId.memberAlamat}}
+            </span>
+          </div>
+        </div>
+
+        <!-- INPUT SATU-SATUNYA: STOK YANG INGIN DIBELI -->
+        <div class="pt-4 border-t border-stone-100 space-y-2">
+          <label for="buy_qty" class="text-xs font-bold text-emerald-950 uppercase tracking-wider block">
+            Jumlah Stok yang Ingin Dibeli
+          </label>
+          <div class="relative max-w-[180px]">
+            <div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none">
+              <i data-lucide="package-check" class="h-4 w-4 text-emerald-800"></i>
+            </div>
+            <input 
+              id="buy_qty"
+              name="totalBelanja"
+              type="number" 
+              required
+              min="1"
+              value="1"
+              class="w-full bg-white border-2 border-emerald-800/20 focus:border-emerald-800 focus:ring-2 focus:ring-emerald-800/20 rounded-xl pl-10 pr-4 py-3 text-sm text-stone-800 font-bold"
+            >
+          </div>
+          <p class="text-[10px] text-stone-400 italic">Pastikan jumlah yang dimasukkan tidak melebihi stok yang tersedia di toko.</p>
+        </div>
+
+        <!-- TOMBOL AKSI: BELI DAN BATAL -->
+        <div class="flex items-center justify-end gap-3 pt-5 border-t border-stone-100 mt-6">
+          <button 
+            type="button" 
+            class="px-5 py-2.5 border border-stone-200 rounded-xl text-sm font-medium text-stone-600 bg-white hover:bg-stone-50 active:scale-95 transition-all shadow-sm"
+          >
+            Batal
+          </button>
+          <button 
+            type="submit" 
+            class="px-7 py-2.5 bg-emerald-800 hover:bg-emerald-950 text-white rounded-xl text-sm font-semibold active:scale-95 transition-all shadow-md flex items-center gap-2"
+          >
+            <i data-lucide="shopping-cart" class="w-4 h-4"></i> Beli Sekarang
+          </button>
+        </div>
+
+      </div>
+    </form>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="text-center py-6 text-xs text-stone-400 w-full bg-white border-t border-stone-100">
+    &copy; 2026 BatikHub Nusantara. Sistem Transaksi Terintegrasi Profil.
+  </footer>
+
+  <!-- Script untuk inisialisasi Lucide Icons -->
+  <script>
+    lucide.createIcons();
+  </script>
+</body>
+</html>

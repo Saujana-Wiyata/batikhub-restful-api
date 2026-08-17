@@ -1,0 +1,26 @@
+<nav class="bg-white border-b border-stone-200/60 shadow-sm w-full sticky top-0 z-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-20">
+        
+        <!-- Logo & Tag Staff -->
+        <div class="flex-shrink-0 flex items-center gap-3">
+          <a href="#" class="text-2xl font-serif font-bold text-emerald-900 flex items-center gap-2 tracking-wide">
+            <i data-lucide="sparkles" class="w-6 h-6 text-amber-600"></i>
+            Batik<span class="text-amber-700 font-sans font-medium text-xl">Hub</span>
+          </a>
+          <span class="bg-stone-100 text-stone-700 text-[10px] font-bold px-2 py-0.5 rounded-md uppercase tracking-wider border border-stone-200 shadow-sm">
+            Staff Dashboard
+          </span>
+        </div>
+
+        <!-- Identitas Singkat Akun -->
+        <div class="flex items-center gap-2">
+          <div class="w-8 h-8 rounded-lg bg-amber-600 text-white flex items-center justify-center text-xs font-bold font-mono">
+            {{inisialGlobal}}
+          </div>
+          <span class="text-xs font-medium text-stone-600 hidden sm:inline">{{staffNameGlobal}} ({{roleGlobal}})</span>
+        </div>
+
+      </div>
+    </div>
+  </nav>

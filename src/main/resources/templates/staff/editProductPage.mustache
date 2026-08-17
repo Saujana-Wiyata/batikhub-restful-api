@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Staff Panel - Ubah Detail Produk</title>
+  <!-- Menggunakan Tailwind CSS via CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Lucide Icons untuk ikon modern -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body class="bg-[#FBF9F4] text-stone-800 antialiased min-h-screen flex flex-col justify-between">
+
+  <!-- NAVBAR UTAMA SYSTEM -->
+  {{> staff/NavbarMain/navbar}}
+
+  <!-- KONTEN UTAMA -->
+  <main class="max-w-3xl mx-auto w-full px-4 sm:px-6 lg:px-8 py-8 flex-grow">
+    
+    <!-- KARTU FORM UBAH DETAIL PRODUK -->
+    <div class="bg-white rounded-2xl border border-stone-200/80 shadow-sm overflow-hidden">
+      
+      <!-- Header Form -->
+      <div class="bg-stone-50 px-6 py-5 border-b border-stone-100 flex items-center gap-3">
+        <div class="w-10 h-10 rounded-xl bg-amber-50 flex items-center justify-center text-amber-700 border border-amber-200/50">
+          <i data-lucide="package-search" class="w-5 h-5"></i>
+        </div>
+        <div>
+          <h1 class="text-base font-bold text-stone-900">Ubah Detail Produk</h1>
+          <p class="text-xs text-stone-500">Perbarui informasi katalog, harga, stok, dan visual komoditas batik.</p>
+        </div>
+      </div>
+
+      <!-- Body Form -->
+      <form action="/updateproduk" method="post" class="p-6 space-y-6" enctype="multipart/form-data">
+        
+        <!-- SECTION 1: KODE PRODUK (READ-ONLY) -->
+        <div class="bg-stone-50/60 p-4 rounded-xl border border-stone-200/60">
+          <div class="space-y-1 max-w-xs">
+            <label class="text-[10px] font-bold text-stone-400 uppercase tracking-wider block">Kode Produk (ID Katalog)</label>
+            <div class="flex items-center gap-2 px-3 py-2 bg-stone-200/40 border border-stone-200 text-stone-500 text-xs font-mono font-bold rounded-xl select-none cursor-not-allowed">
+              <i data-lucide="qr-code" class="w-4 h-4 text-stone-400"></i>
+              <span>{{produk.id}}</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- SECTION 2: DATA PRODUK YANG BISA DIEDIT -->
+        <div class="space-y-4">
+          
+          <!-- Input Nama Produk -->
+          <div class="space-y-1.5">
+            <label for="prodNama" class="text-[10px] font-bold text-stone-500 uppercase tracking-wider block">Nama Produk Batik</label>
+            <div class="relative">
+              <span class="absolute inset-y-0 left-0 flex items-center pl-3.5 text-stone-400">
+                <i data-lucide="tag" class="w-4 h-4"></i>
+              </span>
+              <input type="text" name="nama" placeholder="{{produk.nama}}" class="w-full pl-10 pr-4 py-2.5 bg-white text-stone-800 text-sm font-medium rounded-xl border border-stone-200 focus:outline-none focus:border-amber-600 focus:ring-1 focus:ring-amber-600 transition-all shadow-sm" placeholder="Masukkan nama produk">
+            </div>
+          </div>
+
+          <div class="space-y-1.5">
+            <label class="text-[10px] font-bold text-stone-500 uppercase tracking-wider block">Kategori Produk</label>
+            <div class="relative">
+              <span class="absolute inset-y-0 left-0 flex items-center pl-3.5 text-stone-400 pointer-events-none">
+                <i data-lucide="layout-grid" class="w-4 h-4"></i>
+              </span>
+              
+              <select name="productCategory"
+                class="block w-full pl-10 pr-10 py-2.5 border border-stone-200 rounded-xl bg-white focus:outline-none focus:ring-1 focus:ring-amber-600 text-sm appearance-none text-stone-700 cursor-pointer">
+                
+                <option value="{{produk.productCategory}}" selected hidden>Kategori Sekarang: {{produk.productCategory}}</option>
+                
+                <option value="KAIN">Kain</option>
+                <option value="BAJU">Baju</option>
+                <option value="AKSESORIS">Aksesoris</option>
+              </select>
+              
+              <span class="absolute inset-y-0 right-0 flex items-center pr-3.5 text-stone-400 pointer-events-none">
+                <i data-lucide="chevron-down" class="w-4 h-4"></i>
+              </span>
+            </div>
+          </div>
+
+          <!-- Grid untuk Harga dan Stok -->
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <!-- Input Harga -->
+            <div class="space-y-1.5">
+              <label for="prodHarga" class="text-[10px] font-bold text-stone-500 uppercase tracking-wider block">Harga Jual (Rp)</label>
+              <div class="relative">
+                <span class="absolute inset-y-0 left-0 flex items-center pl-3.5 text-stone-500 font-semibold text-xs">
+                  Rp
+                </span>
+                <input type="number" value="{{produk.harga}}" placeholder="{{produk.harga}}" name="harga" step="any" 
+                class="w-full pl-10 pr-4 py-2.5 bg-white text-stone-800 text-sm font-bold rounded-xl border border-stone-200 focus:outline-none focus:border-amber-600 focus:ring-1 focus:ring-amber-600 transition-all shadow-sm">
+              </div>
+            </div>
+
+            <!-- Input Stok -->
+            <div class="space-y-1.5">
+              <label for="prodStok" class="text-[10px] font-bold text-stone-500 uppercase tracking-wider block">Jumlah Stok Gudang</label>
+              <div class="relative">
+                <span class="absolute inset-y-0 left-0 flex items-center pl-3.5 text-stone-400">
+                  <i data-lucide="layers" class="w-4 h-4"></i>
+                </span>
+                <input type="number" value="{{produk.stock}}" name="stock" placeholder="{{produk.stock}}" class="w-full pl-10 pr-4 py-2.5 bg-white text-stone-800 text-sm font-semibold rounded-xl border border-stone-200 focus:outline-none focus:border-amber-600 focus:ring-1 focus:ring-amber-600 transition-all shadow-sm" placeholder="0">
+              </div>
+            </div>
+          </div>
+
+          <!-- Input File Gambar Produk -->
+          <div class="space-y-2 pt-2">
+            <label class="text-[10px] font-bold text-stone-500 uppercase tracking-wider block">Gambar Produk</label>
+            
+            <div class="flex flex-col sm:flex-row items-start sm:items-center gap-4 p-4 bg-stone-50 rounded-xl border border-stone-200/60">
+              <!-- Thumbnail Preview Sementara -->
+              <div class="w-20 h-20 bg-gradient-to-br from-emerald-900 to-amber-900 rounded-xl flex items-center justify-center text-amber-200 flex-shrink-0 shadow-sm">
+                {{#produk.gambar}}
+                <img src="data:image/png;base64,{{produk.gambar}}" 
+                        alt="{{produk.gambar}}" 
+                        class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300">
+                {{/produk.gambar}}
+
+                {{^produk.gambar}}
+                <i data-lucide="shirt" class="w-8 h-8"></i>
+                {{/produk.gambar}}
+              </div>
+              
+              <!-- Kontrol Upload File -->
+              <div class="w-full space-y-1.5">
+                <input type="file" name="gambar" accept="image/*" class="block w-full text-xs text-stone-500 file:mr-4 file:py-2 file:px-4 file:rounded-xl file:border-0 file:text-xs file:font-semibold file:bg-amber-50 file:text-amber-800 hover:file:bg-amber-100 file:transition-colors file:cursor-pointer">
+                <p class="text-[10px] text-stone-400">Format: JPG, PNG, atau WEBP. Rekomendasi rasio persegi 1:1.</p>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- GARIS PEMBATAS -->
+        <hr class="border-stone-100">
+
+        <!-- TOMBOL AKSI (SAVE & BATAL) -->
+        <div class="flex items-center justify-end gap-3">
+          <!-- Tombol Batal -->
+          <a href="/listproduct" class="px-5 py-2.5 bg-stone-100 hover:bg-stone-200 text-stone-600 font-semibold text-xs rounded-xl transition-colors">
+            Batal
+          </a>
+          
+          <!-- Tombol Save -->
+          <button type="submit" class="flex items-center gap-2 px-5 py-2.5 bg-emerald-600 hover:bg-emerald-700 text-white font-semibold text-xs rounded-xl transition-colors shadow-sm">
+            <i data-lucide="check" class="w-3.5 h-3.5"></i> Simpan Perubahan
+          </button>
+        </div>
+
+      </form>
+
+    </div>
+
+  </main>
+
+  <!-- FOOTER PANEL -->
+  <footer class="text-center py-6 text-xs text-stone-400 w-full bg-white border-t border-stone-100">
+    &copy; 2026 BatikHub Staff Hub Nusantara. Modul Manajemen Inventaris.
+  </footer>
+
+  <!-- CDN script untuk render icon Lucide -->
+  <script>
+    lucide.createIcons();
+  </script>
+</body>
+</html>

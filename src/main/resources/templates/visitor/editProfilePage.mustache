@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BatikHub - Edit Profil</title>
+  <!-- Menggunakan Tailwind CSS via CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Lucide Icons untuk ikon modern -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body class="bg-[#FBF9F4] text-stone-800 antialiased">
+
+  <!-- NAVBAR -->
+  {{> visitor/Navbar/navbar}}
+
+  <!-- KONTEN UTAMA HALAMAN EDIT PROFIL -->
+  <main class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+    
+    <!-- FORM UTAMA EDIT PROFIL -->
+    <form action="/updateprofile" method="post" 
+    class="bg-white rounded-2xl border border-stone-200/80 shadow-sm overflow-hidden">
+      
+      <!-- Header Edit Profil (Aksen Banner Hijau) -->
+      <div class="bg-gradient-to-r from-emerald-950 to-emerald-900 px-6 py-8 text-white flex items-center gap-4">
+        <div class="w-14 h-14 rounded-2xl bg-amber-500/20 text-amber-400 flex items-center justify-center shadow-inner border border-amber-500/30">
+          <i data-lucide="user-cog" class="w-7 h-7"></i>
+        </div>
+        <div>
+          <h1 class="text-xl font-serif font-bold tracking-wide text-amber-100">Ubah Data Profil</h1>
+          <p class="text-xs text-emerald-200/80">Perbarui informasi akun dan detail alamat pengiriman Anda</p>
+        </div>
+      </div>
+
+      <!-- Detail Input Fields -->
+      <div class="p-6 sm:p-8 space-y-6">
+        
+        <h2 class="text-sm font-semibold text-emerald-950 uppercase tracking-wider border-b border-stone-100 pb-2">Informasi Akun</h2>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+          <!-- Input Nama -->
+          <div class="space-y-1.5">
+            <label class="text-xs font-medium text-stone-500 block">Nama Lengkap</label>
+            <input 
+              type="text" 
+              name="name"
+              class="w-full bg-white border border-stone-200 rounded-xl px-4 py-3 text-sm text-stone-800 focus:outline-none focus:ring-2 focus:ring-emerald-800 focus:border-emerald-800 transition-all font-medium"
+              placeholder="{{member.nama}}"
+            >
+          </div>
+
+          <!-- Input Email -->
+          <div class="space-y-1.5">
+            <label class="text-xs font-medium text-stone-500 block">Alamat Email</label>
+            <input 
+              type="email" 
+              name="email"
+              class="w-full bg-white border border-stone-200 rounded-xl px-4 py-3 text-sm text-stone-800 focus:outline-none focus:ring-2 focus:ring-emerald-800 focus:border-emerald-800 transition-all font-medium"
+              placeholder="{{member.email}}"
+            >
+          </div>
+
+          <!-- Input Password -->
+          <div class="space-y-1.5 md:col-span-2">
+            <label class="text-xs font-medium text-stone-500 block">Kata Sandi Baru (Kosongkan jika tidak diubah)</label>
+            <div class="relative">
+              <input 
+                type="password" 
+                name="password"
+                placeholder="Masukkan kata sandi baru jika ingin mengganti" 
+                class="w-full bg-white border border-stone-200 rounded-xl pl-4 pr-12 py-3 text-sm text-stone-800 focus:outline-none focus:ring-2 focus:ring-emerald-800 focus:border-emerald-800 transition-all placeholder-stone-400 font-mono"
+              >
+              <div class="absolute inset-y-0 right-0 pr-4 flex items-center">
+                <i data-lucide="eye" class="w-4 h-4 text-stone-400 cursor-pointer hover:text-stone-600"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <h2 class="text-sm font-semibold text-emerald-950 uppercase tracking-wider border-b border-stone-100 pb-2 pt-4">Alamat Pengiriman</h2>
+
+        <!-- Input Alamat Breakdown -->
+        <div class="space-y-4">
+          <!-- Input Jalan -->
+          <div class="space-y-1.5">
+            <label class="text-xs font-medium text-stone-500 block">Nama Jalan</label>
+            <textarea 
+              rows="2" 
+              name="alamat.jalan"
+              class="w-full bg-white border border-stone-200 rounded-xl px-4 py-3 text-sm text-stone-800 focus:outline-none focus:ring-2 focus:ring-emerald-800 focus:border-emerald-800 transition-all leading-relaxed"
+              placeholder="Contoh: {{member.jalan}}"
+            ></textarea>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <!-- Input Kota -->
+            <div class="space-y-1.5">
+              <label class="text-xs font-medium text-stone-500 block">Kota / Kabupaten</label>
+              <input 
+                type="text" 
+                name="alamat.kota"
+                class="w-full bg-white border border-stone-200 rounded-xl px-4 py-3 text-sm text-stone-800 focus:outline-none focus:ring-2 focus:ring-emerald-800 focus:border-emerald-800 transition-all"
+                placeholder="{{member.kota}}"
+              >
+            </div>
+
+            <!-- Input Provinsi -->
+            <div class="space-y-1.5">
+              <label class="text-xs font-medium text-stone-500 block">Provinsi</label>
+              <input 
+                type="text" 
+                name="alamat.provinsi"
+                class="w-full bg-white border border-stone-200 rounded-xl px-4 py-3 text-sm text-stone-800 focus:outline-none focus:ring-2 focus:ring-emerald-800 focus:border-emerald-800 transition-all"
+                placeholder="{{member.provinsi}}"
+              >
+            </div>
+          </div>
+        </div>
+
+        <!-- AREA TOMBOL SAVE & BATAL -->
+        <div class="flex items-center justify-end gap-3 pt-6 border-t border-stone-100 mt-8">
+          <!-- Tombol Batal -->
+          <button 
+            type="button" 
+            class="px-5 py-2.5 border border-stone-200 rounded-xl text-sm font-medium text-stone-600 bg-white hover:bg-stone-50 hover:text-stone-800 active:scale-95 transition-all shadow-sm"
+          >
+            Batal
+          </button>
+          <!-- Tombol Simpan -->
+           <!-- <form action="/updateprofile" method="post"> -->
+             <button 
+               type="submit" 
+               class="px-6 py-2.5 bg-emerald-800 text-white rounded-xl text-sm font-medium hover:bg-emerald-950 active:scale-95 transition-all shadow-md flex items-center gap-1.5"
+             >
+               <i data-lucide="check" class="w-4 h-4"></i> Simpan
+             </button>
+           <!-- </form> -->
+        </div>
+
+      </div>
+
+    </form>
+
+  </main>
+
+  <!-- Script untuk inisialisasi Lucide Icons -->
+  <script>
+    lucide.createIcons();
+  </script>
+</body>
+</html>

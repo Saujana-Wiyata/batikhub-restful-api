@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Staff Panel - Edit Profile</title>
+  <!-- Menggunakan Tailwind CSS via CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Lucide Icons untuk ikon modern -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body class="bg-[#FBF9F4] text-stone-800 antialiased min-h-screen flex flex-col justify-between">
+
+  <!-- NAVBAR UTAMA SYSTEM -->
+  {{> staff/NavbarMain/navbar}}
+
+  <!-- KONTEN UTAMA -->
+  <main class="max-w-3xl mx-auto w-full px-4 sm:px-6 lg:px-8 py-8 flex-grow">
+    
+    <!-- KARTU FORM EDIT PROFILE -->
+    <div class="bg-white rounded-2xl border border-stone-200/80 shadow-sm overflow-hidden">
+      
+      <!-- Header Form -->
+      <div class="bg-stone-50 px-6 py-5 border-b border-stone-100 flex items-center gap-3">
+        <div class="w-10 h-10 rounded-xl bg-amber-50 flex items-center justify-center text-amber-700 border border-amber-200/50">
+          <i data-lucide="user-cog" class="w-5 h-5"></i>
+        </div>
+        <div>
+          <h1 class="text-base font-bold text-stone-900">Ubah Informasi Profil</h1>
+          <p class="text-xs text-stone-500">Perbarui data autentikasi dan identitas akun internal Anda.</p>
+        </div>
+      </div>
+
+      <!-- Body Form -->
+      <form action="/updatedataemployee" method="post" class="p-6 space-y-6">
+        
+        <!-- SECTION 1: DATA READ-ONLY (TIDAK BISA DIEDIT) -->
+        <div class="bg-stone-50/60 p-4 rounded-xl border border-stone-200/60 grid grid-cols-1 sm:grid-cols-2 gap-4">
+          
+          <!-- Jabatan (Read Only) -->
+          <div class="space-y-1">
+            <label class="text-[10px] font-bold text-stone-400 uppercase tracking-wider block">Jabatan Sistem</label>
+            <div class="flex items-center gap-2 px-3 py-2 bg-stone-200/40 border border-stone-200 text-stone-500 text-xs font-medium rounded-xl select-none cursor-not-allowed">
+              <i data-lucide="shield" class="w-4 h-4 text-stone-400"></i>
+              <span>{{staff.role}}</span>
+            </div>
+          </div>
+
+          <!-- ID Karyawan (Read Only) -->
+          <div class="space-y-1">
+            <label class="text-[10px] font-bold text-stone-400 uppercase tracking-wider block">ID Karyawan</label>
+            <div class="flex items-center gap-2 px-3 py-2 bg-stone-200/40 border border-stone-200 text-stone-500 text-xs font-mono font-bold rounded-xl select-none cursor-not-allowed">
+              <i data-lucide="id-card" class="w-4 h-4 text-stone-400"></i>
+              <span>{{staff.id}}</span>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- SECTION 2: DATA YANG BISA DIEDIT -->
+        <div class="space-y-4">
+          
+          <!-- Input Nama -->
+          <div class="space-y-1.5">
+            <label for="inputNama" class="text-[10px] font-bold text-stone-500 uppercase tracking-wider block">Nama Lengkap</label>
+            <div class="relative">
+              <span class="absolute inset-y-0 left-0 flex items-center pl-3.5 text-stone-400">
+                <i data-lucide="user" class="w-4 h-4"></i>
+              </span>
+              <input type="text" name="name" value="{{staff.name}}" class="w-full pl-10 pr-4 py-2.5 bg-white text-stone-800 text-sm font-medium rounded-xl border border-stone-200 focus:outline-none focus:border-amber-600 focus:ring-1 focus:ring-amber-600 transition-all shadow-sm" placeholder="Masukkan nama lengkap">
+            </div>
+          </div>
+
+          <!-- Input Email -->
+          <div class="space-y-1.5">
+            <label for="inputEmail" class="text-[10px] font-bold text-stone-500 uppercase tracking-wider block">Alamat Email</label>
+            <div class="relative">
+              <span class="absolute inset-y-0 left-0 flex items-center pl-3.5 text-stone-400">
+                <i data-lucide="mail" class="w-4 h-4"></i>
+              </span>
+              <input type="email" name="email" value="{{staff.email}}" class="w-full pl-10 pr-4 py-2.5 bg-white text-stone-800 font-mono text-sm rounded-xl border border-stone-200 focus:outline-none focus:border-amber-600 focus:ring-1 focus:ring-amber-600 transition-all shadow-sm" placeholder="karyawan@batikhub.com">
+            </div>
+          </div>
+
+          <!-- Input Password -->
+          <div class="space-y-1.5">
+            <label tabIndex="-1" for="inputPassword" class="text-[10px] font-bold text-stone-500 uppercase tracking-wider block">Kata Sandi Baru (Password)</label>
+            <div class="relative max-w-md">
+              <span class="absolute inset-y-0 left-0 flex items-center pl-3.5 text-stone-400">
+                <i data-lucide="key-round" class="w-4 h-4"></i>
+              </span>
+              <input type="text" name="password" value="{{staff.password}}" class="w-full pl-10 pr-4 py-2.5 bg-white text-stone-800 font-mono text-sm rounded-xl border border-stone-200 focus:outline-none focus:border-amber-600 focus:ring-1 focus:ring-amber-600 transition-all shadow-sm" placeholder="Masukkan kata sandi baru">
+            </div>
+          </div>
+
+        </div>
+
+        <!-- GARIS PEMBATAS -->
+        <hr class="border-stone-100">
+
+        <!-- TOMBOL AKSI (SAVE & BATAL) -->
+        <div class="flex items-center justify-end gap-3">
+          <!-- Tombol Batal -->
+          <a href="/profileemployee" class="px-5 py-2.5 bg-stone-100 hover:bg-stone-200 text-stone-600 font-semibold text-xs rounded-xl transition-colors">
+            Batal
+          </a>
+          
+          <!-- Tombol Save -->
+          <button type="submit" class="flex items-center gap-2 px-5 py-2.5 bg-emerald-600 hover:bg-emerald-700 text-white font-semibold text-xs rounded-xl transition-colors shadow-sm">
+            <i data-lucide="check" class="w-3.5 h-3.5"></i> Simpan Perubahan
+          </button>
+        </div>
+
+      </form>
+
+    </div>
+
+  </main>
+
+  <!-- FOOTER PANEL -->
+  <footer class="text-center py-6 text-xs text-stone-400 w-full bg-white border-t border-stone-100">
+    &copy; 2026 BatikHub Staff Hub Nusantara. Dashboard Edit Manajemen.
+  </footer>
+
+  <!-- CDN script untuk render icon Lucide -->
+  <script>
+    lucide.createIcons();
+  </script>
+</body>
+</html>

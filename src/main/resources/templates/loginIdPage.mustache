@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BatikHub - Masuk via ID Pengguna</title>
+  <!-- Menggunakan Tailwind CSS via CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Lucide Icons untuk ikon modern -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body class="bg-[#FBF9F4] text-stone-800 antialiased min-h-screen flex flex-col justify-between">
+
+  <!-- NAVBAR -->
+  <nav class="bg-white border-b border-stone-200/60 shadow-sm w-full">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-20">
+        
+        <!-- Logo -->
+        <div class="flex-shrink-0 flex items-center">
+          <a href="#" class="text-2xl font-serif font-bold text-emerald-900 flex items-center gap-2 tracking-wide">
+            <i data-lucide="sparkles" class="w-6 h-6 text-amber-600"></i>
+            Batik<span class="text-amber-700 font-sans font-medium text-xl">Hub</span>
+          </a>
+        </div>
+
+        <!-- Tautan Kembali -->
+        <div class="flex items-center gap-4">
+          <a href="/login" class="text-sm font-medium text-stone-600 hover:text-emerald-900 transition-colors flex items-center gap-1">
+            <i data-lucide="arrow-left" class="w-4 h-4"></i> Metode Utama
+          </a>
+        </div>
+
+      </div>
+    </div>
+  </nav>
+
+  <!-- KONTEN UTAMA HALAMAN LOGIN ID (TANPA PASSWORD) -->
+  <main class="flex-grow flex items-center justify-center px-4 py-12 sm:px-6 lg:px-8">
+    <div class="max-w-md w-full bg-white rounded-2xl border border-stone-200/80 shadow-md overflow-hidden">
+      
+      <!-- Info Header Banner -->
+      <div class="bg-gradient-to-r from-stone-900 to-stone-800 px-6 py-6 text-white flex items-center gap-4">
+        <div class="w-12 h-12 rounded-xl bg-white/10 backdrop-blur-sm text-amber-200 flex items-center justify-center border border-white/10 flex-shrink-0">
+          <i data-lucide="binary" class="w-5 h-5"></i>
+        </div>
+        <div>
+          <h1 class="text-base font-serif font-bold tracking-wide text-white">Login ID Pengguna</h1>
+          <p class="text-xs text-stone-300">Akses cepat menggunakan kode identitas sistem Anda.</p>
+        </div>
+      </div>
+
+      <!-- Form Area -->
+      <form class="p-6 space-y-6" action="/findbyid" method="post">
+        
+        <!-- Input ID Pengguna Utama -->
+        <div class="space-y-1.5">
+          <div class="flex justify-between items-center">
+            <label for="user_id" class="text-xs font-medium text-stone-500 block">ID Pengguna (System ID)</label>
+            <span class="text-[10px] text-stone-400 font-sans uppercase bg-stone-100 px-1.5 py-0.5 rounded font-semibold">Direct Access</span>
+          </div>
+          <div class="relative">
+            <div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none">
+              <i data-lucide="hash" class="h-4 w-4 text-stone-400"></i>
+            </div>
+            <input 
+              id="user_id" 
+              name="id" 
+              type="text" 
+              required 
+              class="w-full bg-white border border-stone-200 rounded-xl pl-10 pr-4 py-3.5 text-sm text-stone-800 focus:outline-none focus:ring-2 focus:ring-emerald-800 focus:border-emerald-800 transition-all placeholder-stone-400 font-mono tracking-wide uppercase shadow-sm" 
+              placeholder="Contoh: USR-2026-XXXX-XXXX"
+            >
+          </div>
+          <p class="text-[10px] text-stone-400 italic leading-relaxed">
+            Cukup masukkan kode ID unik permanen Anda untuk masuk langsung ke panel akun BatikHub.
+          </p>
+        </div>
+
+        <!-- GRUP TOMBOL AKSI: BATAL & MASUK -->
+        <div class="flex items-center justify-end gap-3 pt-4 border-t border-stone-100 mt-2">
+          <!-- Tombol Batal -->
+          <button 
+            type="button" 
+            class="w-full sm:w-auto px-5 py-2.5 border border-stone-200 rounded-xl text-sm font-medium text-stone-600 bg-white hover:bg-stone-50 hover:text-stone-800 active:scale-95 transition-all shadow-sm text-center"
+          >
+            Batal
+          </button>
+          <!-- Tombol Masuk -->
+          <button 
+            type="submit" 
+            class="w-full sm:w-auto px-6 py-2.5 bg-emerald-800 text-white rounded-xl text-sm font-medium hover:bg-emerald-950 active:scale-95 transition-all shadow-md flex items-center justify-center gap-1.5"
+          >
+            <i data-lucide="log-in" class="w-4 h-4"></i> Masuk
+          </button>
+        </div>
+
+      </form>
+
+    </div>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="text-center py-6 text-xs text-stone-400 w-full bg-white border-t border-stone-100">
+    &copy; 2026 BatikHub Nusantara. All rights reserved.
+  </footer>
+
+  <!-- Script untuk inisialisasi Lucide Icons -->
+  <script>
+    lucide.createIcons();
+  </script>
+</body>
+</html>

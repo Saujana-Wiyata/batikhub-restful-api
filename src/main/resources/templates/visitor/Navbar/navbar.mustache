@@ -1,0 +1,57 @@
+<nav class="sticky top-0 z-50 bg-white border-b border-stone-200/60 shadow-sm">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-20">
+        
+        <!-- Logo -->
+        <div class="flex-shrink-0 flex items-center">
+          <a href="#" class="text-2xl font-serif font-bold text-emerald-900 flex items-center gap-2 tracking-wide">
+            <i data-lucide="sparkles" class="w-6 h-6 text-amber-600"></i>
+            Batik<span class="text-amber-700 font-sans font-medium text-xl">Hub</span>
+          </a>
+        </div>
+
+        <!-- Menu Navigasi (Promo, Cari, Pengiriman, Profile) -->
+        <div class="flex items-center gap-1 sm:gap-4">
+          <!-- Menu Promo -->
+          <a href="/promo" class="flex items-center gap-1.5 px-3 py-2 rounded-xl text-sm font-medium text-stone-600 hover:bg-stone-100 hover:text-stone-900 transition-colors">
+            <i data-lucide="tag" class="w-4 h-4 text-stone-400"></i>
+            <span>Promo</span>
+          </a>
+
+          <!-- Menu Cari (Aktif) -->
+          <a href="/findproduct" class="flex items-center gap-1.5 px-3 py-2 rounded-xl text-sm font-medium text-stone-600 hover:bg-stone-100 hover:text-stone-900 transition-colors">
+            <i data-lucide="search" class="w-4 h-4 text-stone-400"></i>
+            <span>Cari</span>
+          </a>
+
+          <!-- Menu Pengiriman -->
+          <a href="/pengiriman" class="flex items-center gap-1.5 px-3 py-2 rounded-xl text-sm font-medium text-stone-600 hover:bg-stone-100 hover:text-stone-900 transition-colors">
+            <i data-lucide="truck" class="w-4 h-4 text-stone-400"></i>
+            <span>Pengiriman</span>
+          </a>
+
+          <!-- Pembatas -->
+          <div class="h-5 w-px bg-stone-200 mx-1 hidden sm:block"></div>
+
+          <!-- Menu Profile -->
+          {{#isLoginGlobal}}
+            <a href="/profile" class="flex items-center gap-2 px-3 py-1.5 bg-emerald-50 rounded-full border border-emerald-200 shadow-sm">
+            <div class="w-7 h-7 rounded-full bg-emerald-800 text-amber-200 flex items-center justify-center text-xs font-semibold uppercase">
+              {{inisialGlobal}}
+            </div>
+            <span class="text-xs font-medium text-emerald-900 hidden sm:inline">{{memberNameGlobal}}</span>
+          </a>
+          {{/isLoginGlobal}}
+
+           {{^isLoginGlobal}}
+          <a href="/login" class="flex items-center gap-2 px-5 py-2 border border-emerald-800 rounded-full text-sm font-medium text-emerald-800 hover:bg-emerald-800 hover:text-white transition-all shadow-sm">
+            <i data-lucide="user" class="w-4 h-4"></i>
+            <span>Masuk</span>
+          </a>
+          {{/isLoginGlobal}}
+
+        </div>
+
+      </div>
+    </div>
+  </nav>
