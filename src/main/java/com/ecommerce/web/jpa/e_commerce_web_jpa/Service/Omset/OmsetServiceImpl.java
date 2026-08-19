@@ -45,6 +45,7 @@ public class OmsetServiceImpl implements OmsetService {
         omset.setIdProduk(null);
     }
 
+    // TODO: delete thie method because we dont use it in controller
     @Override
     public void delete(@Positive int id) {
         Omset omset = omsetRespository.findById(id).orElse(null);
@@ -76,6 +77,7 @@ public class OmsetServiceImpl implements OmsetService {
         return omsetRespository.jumlahProdukTerjual();
     }
 
+    // TODO: delete thie method because we dont use it in controller
     @Override
     public List<Omset> findAll() {
         return omsetRespository.findAll();

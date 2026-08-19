@@ -13,6 +13,7 @@ public interface OmsetService {
 
     void insert(@Valid OmsetDTO omset);
 
+    // TODO: delete thie method because we dont use it in controller
     void delete(@Positive int id);
 
     void tambahJumlahPenjualan(@Positive int jumlahPembelian, @NotBlank String idProduk);
@@ -23,6 +24,7 @@ public interface OmsetService {
 
     Integer totalProdukTerjual();
 
+    // TODO: delete thie method because we dont use it in controller
     List<Omset> findAll();
 
 }
