@@ -49,8 +49,8 @@ All API endpoints are versioned under the `/api/v1` namespace. For full API docu
 | :--- | :--- | :--- | :--- |
 | `POST` | `/api/v1/member` | Create a new member account | Member |
 | `GET` | `/api/v1/member/current` | Get a member account by their token | Member |
-| `PATCH` | `/api/v1/member/{id}` | Update member data account | Member |
-| `DELETE` | `/api/v1/member/{id}` | Remove existing member account | Member |
+| `PATCH` | `/api/v1/member/current` | Update member data account | Member |
+| `DELETE` | `/api/v1/member/current` | Remove existing member account | Member |
 
 ### 👔 Staff (`/api/v1/staff`)
 | Method | Endpoint | Description | Access |
@@ -89,6 +89,5 @@ All API endpoints return data wrapped in a uniform JSON structure:
 ```json
 {
   "code": 200,
-  "status": "OK",
   "data": { }
 }
