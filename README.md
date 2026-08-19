@@ -12,7 +12,7 @@
 
 ## 📌 Project Overview
 
-This repository represents the **decoupled backend API service** of the Batik Hub ecosystem. Originally designed as a monolithic server-side rendered (SSR) application, this service was refactored into a stateless REST API to support multi-client architectures (Single Page Applications, Mobile Apps, and Third-Party Services).
+This repository represents the decoupled backend API servic of the Batik Hub ecosystem. Originally designed as a monolithic server-side rendered (SSR) application, this service was refactored into a stateless REST API to support multi-client architectures (Single Page Applications, Mobile Apps, and Third-Party Services).
 
 ### 🛠️ Architecture & Key Engineering Highlights
 - **Decoupled Architecture:** Utilizes `@RestController` returning standardized JSON payloads (`ResponseEntity<T>`).
@@ -33,23 +33,53 @@ This repository represents the **decoupled backend API service** of the Batik Hu
 
 ## 🔌 API Endpoints Summary
 
-All API endpoints are versioned under the `/api/v1` namespace.
+All API endpoints are versioned under the `/api/v1` namespace. For full API documentation specs, please check the `/docs` directory.
 
 ### 🛍️ Products (`/api/v1/products`)
 | Method | Endpoint | Description | Access |
 | :--- | :--- | :--- | :--- |
-| `GET` | `/api/v1/products` | Retrieve list of all products | Public |
-| `GET` | `/api/v1/products/{id}` | Get product details by ID | Public |
-| `POST` | `/api/v1/products` | Create a new product listing | Staff/Admin |
-| `PUT` | `/api/v1/products/{id}` | Update existing product details | Staff/Admin |
-| `DELETE` | `/api/v1/products/{id}` | Remove a product listing | Staff/Admin |
+| `GET` | `/api/v1/products` | Retrieve list of all products | All |
+| `GET` | `/api/v1/products/{id}` | Get product details by ID | All |
+| `POST` | `/api/v1/products` | Create a new product listing | Staff/CEO |
+| `PATCH` | `/api/v1/products/{id}` | Update existing product details | Staff/CEO |
+| `DELETE` | `/api/v1/products/{id}` | Remove a product listing | Staff/CEO |
 
-### 💳 Transactions & Revenue (`/api/v1/transactions` & `/api/v1/omset`)
+### 👤 Member (`/api/v1/member`)
 | Method | Endpoint | Description | Access |
 | :--- | :--- | :--- | :--- |
-| `POST` | `/api/v1/transactions` | Process purchase & trigger auto `reduceStock` | Member |
-| `GET` | `/api/v1/omset` | Fetch real-time revenue analytics (`jumlahOmset`) | Staff/Admin |
+| `POST` | `/api/v1/member` | Create a new member account | Member |
+| `GET` | `/api/v1/member/current` | Get a member account by their token | Member |
+| `PATCH` | `/api/v1/member/{id}` | Update member data account | Member |
+| `DELETE` | `/api/v1/member/{id}` | Remove existing member account | Member |
 
+### 👔 Staff (`/api/v1/staff`)
+| Method | Endpoint | Description | Access |
+| :--- | :--- | :--- | :--- |
+| `GET` | `/api/v1/staff/current` | Get a staff account by their token | Staff/CEO |
+| `POST` | `/api/v1/staff` | Create a new staff account | CEO |
+| `PATCH` | `/api/v1/staff/{id}` | Update staff data account | Staff/CEO |
+| `DELETE` | `/api/v1/staff/{id}` | Remove existing staff account | CEO |
+
+### 👤/👔 User & Staff Auth (`/api/v1/auth`)
+| Method | Endpoint | Description | Access |
+| :--- | :--- | :--- | :--- |
+| `POST` | `/api/v1/auth/login` | Authenticate user & generate token/session | All |
+| `DELETE` | `/api/v1/auth/logout` | Remove their token/session | All |
+
+### 💳 Transactions (`/api/v1/transaction`)
+| Method | Endpoint | Description | Access |
+| :--- | :--- | :--- | :--- |
+| `POST` | `/api/v1/transaction` | Process purchase | Member |
+| `DELETE` | `/api/v1/transaction/{id}` | As an indication that the product has arrived | Member |
+| `GET` | `/api/v1/transaction/all` | Get all the transaction that is being sent  | Staff/CEO |
+| `GET` | `/api/v1/transaction/{id}` | Get all the transaction from ID  | Member |
+
+### 💵 Omset (`/api/v1/omset`)
+| Method | Endpoint | Description | Access |
+| :--- | :--- | :--- | :--- |
+| `GET` | `/api/v1/omset/product/all` | Get revenue analytics for all products | Staff/CEO |
+| `GET` | `/api/v1/omset/all` | Get all products that have been sold | Staff/CEO |
+| `GET` | `/api/v1/omset/perproduct` | Get revenue for each product | Staff/CEO |
 ---
 
 ## 📄 Standardized API Response Format
