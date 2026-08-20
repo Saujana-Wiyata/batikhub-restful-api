@@ -74,7 +74,7 @@ Response Body (Failed) :
 ```
 
 ## Delete
-Endpoint: DELETE /api/v1/member/current
+Endpoint: DELETE /api/v1/staff/current
 
 Request Header : 
 - X-API-TOKEN : Token (Mendatory)
@@ -95,8 +95,48 @@ Response Body (Failed) :
 }
 ```
 
-## Find Specific Member
-Endpoint: GET /api/v1/member/current
+## Find All Staff
+Endpoint: GET /api/v1/staff/all
+
+Request Header : 
+- X-API-TOKEN : Token (Mendatory)
+
+Response Body (Success) :
+```Json
+{
+    "code" : 200,
+    "data" : [
+        {
+            "name" : "Saujana Wiyata",
+            "email" : "jana@gmail.com",
+            "role" : "CEO"
+        },
+        {
+            "name" : "Khairy Aimar",
+            "email" : "ayie@gmail.com",
+            "role" : "HR"
+        }
+    ],
+
+    "paging": {
+        "currentPage": 0,
+        "totalPage": 10,
+        "size": 10,
+        "totalElements": 95
+    }
+}
+```
+
+Response Body (Failed) :
+```Json
+{
+    "code" : 404,
+    "error" : "Fail to find your account"
+}
+```
+
+## Find Specific Staff
+Endpoint: GET /api/v1/staff/current
 
 Request Header : 
 - X-API-TOKEN : Token (Mendatory)
