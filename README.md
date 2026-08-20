@@ -55,10 +55,11 @@ All API endpoints are versioned under the `/api/v1` namespace. For full API docu
 ### 👔 Staff (`/api/v1/staff`)
 | Method | Endpoint | Description | Access |
 | :--- | :--- | :--- | :--- |
-| `GET` | `/api/v1/staff/current` | Get a staff account by their token | Staff/CEO |
 | `POST` | `/api/v1/staff` | Create a new staff account | CEO |
-| `PATCH` | `/api/v1/staff/{id}` | Update staff data account | Staff/CEO |
-| `DELETE` | `/api/v1/staff/{id}` | Remove existing staff account | CEO |
+| `POST` | `/api/v1/staff/all` | Show all staff account | CEO |
+| `GET` | `/api/v1/staff/current` | Get a staff account by their token | Staff/CEO |
+| `PATCH` | `/api/v1/staff/current` | Update staff data account | Staff/CEO |
+| `DELETE` | `/api/v1/staff/current` | Remove existing staff account | CEO |
 
 ### 👤/👔 User & Staff Auth (`/api/v1/auth`)
 | Method | Endpoint | Description | Access |
