@@ -73,7 +73,6 @@ All API endpoints are versioned under the `/api/v1` namespace. For full API docu
 | `POST` | `/api/v1/transaction` | Process purchase | Member |
 | `DELETE` | `/api/v1/transaction/{id}` | As an indication that the product has arrived | Member |
 | `GET` | `/api/v1/transaction/all` | Get all the transaction that is being sent  | Staff/CEO |
-| `GET` | `/api/v1/transaction/{id}` | Get all the transaction from ID  | Member |
 
 ### 💵 Omset (`/api/v1/omset`)
 | Method | Endpoint | Description | Access |
