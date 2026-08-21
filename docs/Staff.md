@@ -120,9 +120,9 @@ Response Body (Success) :
 
     "paging": {
         "currentPage": 0,
-        "totalPage": 10,
-        "size": 10,
-        "totalElements": 95
+        "totalPage": 3,
+        "size": 5,
+        "totalElements": 15
     }
 }
 ```
@@ -130,8 +130,8 @@ Response Body (Success) :
 Response Body (Failed) :
 ```Json
 {
-    "code" : 404,
-    "error" : "Fail to find your account"
+    "code" : 500,
+    "error" : "Internal server error"
 }
 ```
 
