@@ -84,6 +84,7 @@ public class TransaksiServiceImpl implements TransaksiService {
         return transaksiRepository.findAll();
     }
 
+    // TODO : delete this method because it dont use it in controller
     @Override
     public Transaksi findById(@Positive int idTransaksi) {
         return transaksiRepository.findById(idTransaksi).orElse(null);

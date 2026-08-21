@@ -24,7 +24,6 @@ public interface OmsetService {
 
     Integer totalProdukTerjual();
 
-    // TODO: delete thie method because we dont use it in controller
     List<Omset> findAll();
 
 }

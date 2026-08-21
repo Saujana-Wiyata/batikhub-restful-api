@@ -77,7 +77,6 @@ public class OmsetServiceImpl implements OmsetService {
         return omsetRespository.jumlahProdukTerjual();
     }
 
-    // TODO: delete thie method because we dont use it in controller
     @Override
     public List<Omset> findAll() {
         return omsetRespository.findAll();

@@ -16,6 +16,7 @@ public interface TransaksiService {
 
     List<Transaksi> findAll();
 
+    // TODO : delete this method because it dont use it in controller
     Transaksi findById(@Positive int idTransaksi);
 
 }
