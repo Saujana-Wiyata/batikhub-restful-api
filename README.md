@@ -77,9 +77,7 @@ All API endpoints are versioned under the `/api/v1` namespace. For full API docu
 ### 💵 Omset (`/api/v1/omset`)
 | Method | Endpoint | Description | Access |
 | :--- | :--- | :--- | :--- |
-| `GET` | `/api/v1/omset/product/all` | Get revenue analytics for all products | Staff/CEO |
-| `GET` | `/api/v1/omset/all` | Get all products that have been sold | Staff/CEO |
-| `GET` | `/api/v1/omset/perproduct` | Get revenue for each product | Staff/CEO |
+| `GET` | `/api/v1/omset/dashboard` | Get revenue analytics for all products (omset, omet per product, total sold for each product, total items sold) | Staff/CEO |
 ---
 
 ## 📄 Standardized API Response Format
