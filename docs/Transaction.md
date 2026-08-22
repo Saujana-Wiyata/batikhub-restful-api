@@ -4,7 +4,7 @@
 Endpoint: POST /api/v1/transaction
 
 Request Header:
-- X-API-TOKEN : Token (Mendatory)
+- X-API-TOKEN : Token (Mandatory)
 
 Request Body :
 ```Json
@@ -44,7 +44,7 @@ Response Body (Failed) :
 Enpoint : GET /api/v1/transaction/all
 
 Request Header:
-- X-API-TOKEN : Token (Mendatory)
+- X-API-TOKEN : Token (Mandatory)
 
 Response Body (success) :
 ```Json
@@ -88,7 +88,7 @@ Response Body (Failed) :
 Enpoint : DELETE /api/v1/transaction/{id}
 
 Request Header:
-- X-API-TOKEN : Token (Mendatory)
+- X-API-TOKEN : Token (Mandatory)
 
 Response Body (SUccess) :
 ```Json

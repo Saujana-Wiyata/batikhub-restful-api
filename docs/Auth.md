@@ -38,7 +38,7 @@ Response Body (failed):
 Endpoint : POST /api/v1/auth/logout
 
 Request Header : 
-- X-API-TOKEN : Token (Mendatory)
+- X-API-TOKEN : Token (Mandatory)
 
 Response Body (Success): 
 ```json

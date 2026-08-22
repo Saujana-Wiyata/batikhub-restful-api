@@ -40,7 +40,7 @@ Response Body (Failed) :
 Endpoint : PATCH /api/v1/staff/current
 
 Request Header : 
-- X-API-TOKEN : Token (Mendatory)
+- X-API-TOKEN : Token (Mandatory)
 
 Request Body :
 ```Json
@@ -77,7 +77,7 @@ Response Body (Failed) :
 Endpoint: DELETE /api/v1/staff/current
 
 Request Header : 
-- X-API-TOKEN : Token (Mendatory)
+- X-API-TOKEN : Token (Mandatory)
 
 Response Body (Failed) :
 ```Json
@@ -99,7 +99,7 @@ Response Body (Failed) :
 Endpoint: GET /api/v1/staff/all
 
 Request Header : 
-- X-API-TOKEN : Token (Mendatory)
+- X-API-TOKEN : Token (Mandatory)
 
 Response Body (Success) :
 ```Json
@@ -139,7 +139,7 @@ Response Body (Failed) :
 Endpoint: GET /api/v1/staff/current
 
 Request Header : 
-- X-API-TOKEN : Token (Mendatory)
+- X-API-TOKEN : Token (Mandatory)
 
 Response Body (Success) :
 ```Json
