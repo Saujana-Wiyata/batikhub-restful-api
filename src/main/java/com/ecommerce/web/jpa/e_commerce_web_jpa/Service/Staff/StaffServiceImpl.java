@@ -30,7 +30,7 @@ public class StaffServiceImpl implements StaffService {
                 .substring(0, 8);
 
         Staff staff = new Staff(geenerateId, staffReq.getName(), staffReq.getEmail(),
-                staffReq.getPassword(), Role.valueOf(staffReq.getRole()));
+                staffReq.getPassword(), Role.valueOf(staffReq.getRole()), null, null);
 
         staffRepository.save(staff);
     }
