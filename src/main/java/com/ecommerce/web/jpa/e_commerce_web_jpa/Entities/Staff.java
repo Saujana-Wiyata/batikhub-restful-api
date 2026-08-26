@@ -2,6 +2,7 @@ package com.ecommerce.web.jpa.e_commerce_web_jpa.Entities;
 
 import com.ecommerce.web.jpa.e_commerce_web_jpa.Entities.Enum.Role;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
@@ -33,5 +34,10 @@ public class Staff {
 
     @Enumerated(EnumType.STRING)
     private Role role;
+
+    private String token;
+
+    @Column(name = "token_expired")
+    private String tokenExpired;
 
 }

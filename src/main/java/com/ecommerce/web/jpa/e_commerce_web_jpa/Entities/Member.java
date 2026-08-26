@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.ecommerce.web.jpa.e_commerce_web_jpa.Entities.Embed.Alamat;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Embedded;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
@@ -33,6 +34,11 @@ public class Member {
 
     @Embedded
     private Alamat alamat;
+
+    private String token;
+
+    @Column(name = "token_expired")
+    private String tokenExpired;
 
     @OneToMany(mappedBy = "idMember")
     // @Column(name = "transaksi")
