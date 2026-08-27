@@ -6,8 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import com.ecommerce.web.jpa.e_commerce_web_jpa.entities.Staff;
-import com.ecommerce.web.jpa.e_commerce_web_jpa.entities.Enum.Role;
-import com.ecommerce.web.jpa.e_commerce_web_jpa.repositories.StaffRepository;
+import com.ecommerce.web.jpa.e_commerce_web_jpa.entities.enums.Role;
 
 @SpringBootTest
 public class StaffRepoTest {

@@ -9,7 +9,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 import com.ecommerce.web.jpa.e_commerce_web_jpa.entities.Omset;
 import com.ecommerce.web.jpa.e_commerce_web_jpa.entities.Produk;
-import com.ecommerce.web.jpa.e_commerce_web_jpa.repositories.OmsetRespository;
 
 @SpringBootTest
 public class OmsetRepoTest {

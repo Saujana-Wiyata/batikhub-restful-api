@@ -11,8 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import com.ecommerce.web.jpa.e_commerce_web_jpa.entities.Produk;
-import com.ecommerce.web.jpa.e_commerce_web_jpa.entities.Enum.ProductCategory;
-import com.ecommerce.web.jpa.e_commerce_web_jpa.repositories.ProdukRepository;
+import com.ecommerce.web.jpa.e_commerce_web_jpa.entities.enums.ProductCategory;
 
 @SpringBootTest
 public class ProdukRepoTest {

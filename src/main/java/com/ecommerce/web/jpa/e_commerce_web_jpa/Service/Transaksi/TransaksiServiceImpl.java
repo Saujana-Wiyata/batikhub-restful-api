@@ -9,8 +9,8 @@ import com.ecommerce.web.jpa.e_commerce_web_jpa.dto.transaksi.TransaksiInsertDTO
 import com.ecommerce.web.jpa.e_commerce_web_jpa.entities.Member;
 import com.ecommerce.web.jpa.e_commerce_web_jpa.entities.Produk;
 import com.ecommerce.web.jpa.e_commerce_web_jpa.entities.Transaksi;
-import com.ecommerce.web.jpa.e_commerce_web_jpa.Service.Produk.ProdukService;
-import com.ecommerce.web.jpa.e_commerce_web_jpa.dto.transaksi.TransaksiInsertDTO;
+import com.ecommerce.web.jpa.e_commerce_web_jpa.service.omset.OmsetService;
+import com.ecommerce.web.jpa.e_commerce_web_jpa.service.produk.ProdukService;
 import com.ecommerce.web.jpa.e_commerce_web_jpa.repositories.TransaksiRepository;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.Positive;

@@ -7,9 +7,9 @@ import org.springframework.validation.annotation.Validated;
 
 import com.ecommerce.web.jpa.e_commerce_web_jpa.dto.omset.OmsetDTO;
 import com.ecommerce.web.jpa.e_commerce_web_jpa.entities.Omset;
-import com.ecommerce.web.jpa.e_commerce_web_jpa.dto.omset.OmsetDTO;
+import com.ecommerce.web.jpa.e_commerce_web_jpa.entities.Produk;
 import com.ecommerce.web.jpa.e_commerce_web_jpa.repositories.OmsetRespository;
-import com.ecommerce.web.jpa.e_commerce_web_jpa.repositories.ProdukRepository;Repository;
+import com.ecommerce.web.jpa.e_commerce_web_jpa.repositories.ProdukRepository;
 
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;

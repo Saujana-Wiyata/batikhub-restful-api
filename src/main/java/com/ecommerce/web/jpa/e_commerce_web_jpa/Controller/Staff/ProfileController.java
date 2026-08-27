@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.ecommerce.web.jpa.e_commerce_web_jpa.entities.Staff;
-import com.ecommerce.web.jpa.e_commerce_web_jpa.entities.Enum.Role;
+import com.ecommerce.web.jpa.e_commerce_web_jpa.entities.enums.Role;
 import com.ecommerce.web.jpa.e_commerce_web_jpa.service.staff.StaffService;
 
 import jakarta.servlet.http.Cookie;

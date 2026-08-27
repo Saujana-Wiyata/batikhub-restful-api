@@ -6,10 +6,16 @@ import org.springframework.stereotype.Service;
 import org.springframework.validation.annotation.Validated;
 
 import com.ecommerce.web.jpa.e_commerce_web_jpa.dto.member.MemberInputDTO;
-import com.ecommerce.web.jpa.e_commerce_web_jpa.dto.member.MemberUpdat
-import com.ecommerce.web.jpa.e_commerce_web_jpa.dto.member.MemberInputDTO;
 import com.ecommerce.web.jpa.e_commerce_web_jpa.dto.member.MemberUpdateDTO;
-import com.ecommerce.web.jpa.e_commerce_web_jpa.repositories.MemberRepository;ry;
+import com.ecommerce.web.jpa.e_commerce_web_jpa.entities.Member;
+import com.ecommerce.web.jpa.e_commerce_web_jpa.entities.embed.Alamat;
+import com.ecommerce.web.jpa.e_commerce_web_jpa.repositories.MemberRepository;
+
+// import com.ecommerce.web.jpa.e_commerce_web_jpa.dto.member.MemberInputDTO;
+// import com.ecommerce.web.jpa.e_commerce_web_jpa.dto.member.Member;
+// import com.ecommerce.web.jpa.e_commerce_web_jpa.dto.member.MemberInputDTO;
+// import com.ecommerce.web.jpa.e_commerce_web_jpa.dto.member.MemberUpdateDTO;
+// import com.ecommerce.web.jpa.e_commerce_web_jpa.repositories.MemberRepository;
 
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotBlank;

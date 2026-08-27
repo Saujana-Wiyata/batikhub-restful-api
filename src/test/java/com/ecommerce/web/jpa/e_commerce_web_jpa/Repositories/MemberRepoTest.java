@@ -7,7 +7,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 import com.ecommerce.web.jpa.e_commerce_web_jpa.entities.Member;
 import com.ecommerce.web.jpa.e_commerce_web_jpa.entities.embed.Alamat;
-import com.ecommerce.web.jpa.e_commerce_web_jpa.repositories.MemberRepository;
 
 @SpringBootTest
 public class MemberRepoTest {
@@ -23,7 +22,6 @@ public class MemberRepoTest {
         member.setPassword("rahasia2");
         member.setName("Test2");
         member.setAlamat(new Alamat("jln abc", "Jakarta Selatan", "DKI Jakarta"));
-
         memberRepository.save(member);
     }
 

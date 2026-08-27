@@ -8,9 +8,9 @@ import org.springframework.validation.annotation.Validated;
 
 import com.ecommerce.web.jpa.e_commerce_web_jpa.dto.produk.ProdukInsertDTO;
 import com.ecommerce.web.jpa.e_commerce_web_jpa.dto.produk.ProdukUpdateDTO;
-import com.ecommerce.web.jpa.e_commerce_web_jpa.dto.produk.ProdukInsertDTO;
-import com.ecommerce.web.jpa.e_commerce_web_jpa.dto.produk.ProdukUpdateDTO;
-import com.ecommerce.web.jpa.e_commerce_web_jpa.repositories.ProdukRepository;ry;
+import com.ecommerce.web.jpa.e_commerce_web_jpa.entities.Produk;
+import com.ecommerce.web.jpa.e_commerce_web_jpa.entities.enums.ProductCategory;
+import com.ecommerce.web.jpa.e_commerce_web_jpa.repositories.ProdukRepository;
 
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotBlank;
