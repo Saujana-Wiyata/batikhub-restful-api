@@ -1,16 +1,16 @@
-package com.ecommerce.web.jpa.e_commerce_web_jpa.Service;
+package com.ecommerce.web.jpa.e_commerce_web_jpa.service;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import com.ecommerce.web.jpa.e_commerce_web_jpa.Dto.Member.AlamatDTO;
-import com.ecommerce.web.jpa.e_commerce_web_jpa.Dto.Member.MemberInputDTO;
-import com.ecommerce.web.jpa.e_commerce_web_jpa.Dto.Member.MemberUpdateDTO;
-import com.ecommerce.web.jpa.e_commerce_web_jpa.Entities.Member;
-import com.ecommerce.web.jpa.e_commerce_web_jpa.Entities.Embed.Alamat;
-import com.ecommerce.web.jpa.e_commerce_web_jpa.Service.Member.MemberService;
+import com.ecommerce.web.jpa.e_commerce_web_jpa.dto.member.AlamatDTO;
+import com.ecommerce.web.jpa.e_commerce_web_jpa.dto.member.MemberInputDTO;
+import com.ecommerce.web.jpa.e_commerce_web_jpa.dto.member.MemberUpdateDTO;
+import com.ecommerce.web.jpa.e_commerce_web_jpa.entities.Member;
+import com.ecommerce.web.jpa.e_commerce_web_jpa.entities.embed.Alamat;
+import com.ecommerce.web.jpa.e_commerce_web_jpa.service.member.MemberService;
 
 import jakarta.validation.ConstraintViolationException;
 

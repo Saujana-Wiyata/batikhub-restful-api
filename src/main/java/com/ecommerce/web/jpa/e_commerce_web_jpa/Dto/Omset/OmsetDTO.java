@@ -1,6 +1,6 @@
-package com.ecommerce.web.jpa.e_commerce_web_jpa.Dto.Omset;
+package com.ecommerce.web.jpa.e_commerce_web_jpa.dto.omset;
 
-import com.ecommerce.web.jpa.e_commerce_web_jpa.Dto.Produk.ProdukIdDTO;
+import com.ecommerce.web.jpa.e_commerce_web_jpa.dto.produk.ProdukIdDTO;
 
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.Positive;

@@ -1,9 +1,9 @@
-package com.ecommerce.web.jpa.e_commerce_web_jpa.Service.Omset;
+package com.ecommerce.web.jpa.e_commerce_web_jpa.service.omset;
 
 import java.util.List;
 
-import com.ecommerce.web.jpa.e_commerce_web_jpa.Dto.Omset.OmsetDTO;
-import com.ecommerce.web.jpa.e_commerce_web_jpa.Entities.Omset;
+import com.ecommerce.web.jpa.e_commerce_web_jpa.dto.omset.OmsetDTO;
+import com.ecommerce.web.jpa.e_commerce_web_jpa.entities.Omset;
 
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotBlank;

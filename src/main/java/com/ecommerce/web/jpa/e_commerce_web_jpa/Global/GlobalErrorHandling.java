@@ -1,4 +1,4 @@
-package com.ecommerce.web.jpa.e_commerce_web_jpa.Global;
+package com.ecommerce.web.jpa.e_commerce_web_jpa.global;
 
 import org.hibernate.exception.ConstraintViolationException;
 import org.springframework.http.HttpStatus;

@@ -1,15 +1,15 @@
-package com.ecommerce.web.jpa.e_commerce_web_jpa.Service.Omset;
+package com.ecommerce.web.jpa.e_commerce_web_jpa.service.omset;
 
 import java.util.List;
 
 import org.springframework.stereotype.Service;
 import org.springframework.validation.annotation.Validated;
 
-import com.ecommerce.web.jpa.e_commerce_web_jpa.Dto.Omset.OmsetDTO;
-import com.ecommerce.web.jpa.e_commerce_web_jpa.Entities.Omset;
-import com.ecommerce.web.jpa.e_commerce_web_jpa.Entities.Produk;
-import com.ecommerce.web.jpa.e_commerce_web_jpa.Repositories.OmsetRespository;
-import com.ecommerce.web.jpa.e_commerce_web_jpa.Repositories.ProdukRepository;
+import com.ecommerce.web.jpa.e_commerce_web_jpa.dto.omset.OmsetDTO;
+import com.ecommerce.web.jpa.e_commerce_web_jpa.entities.Omset;
+import com.ecommerce.web.jpa.e_commerce_web_jpa.dto.omset.OmsetDTO;
+import com.ecommerce.web.jpa.e_commerce_web_jpa.repositories.OmsetRespository;
+import com.ecommerce.web.jpa.e_commerce_web_jpa.repositories.ProdukRepository;Repository;
 
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;

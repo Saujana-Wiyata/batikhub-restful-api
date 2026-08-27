@@ -1,4 +1,4 @@
-package com.ecommerce.web.jpa.e_commerce_web_jpa.Service;
+package com.ecommerce.web.jpa.e_commerce_web_jpa.service;
 
 import java.util.List;
 
@@ -7,10 +7,10 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import com.ecommerce.web.jpa.e_commerce_web_jpa.Dto.Omset.OmsetDTO;
-import com.ecommerce.web.jpa.e_commerce_web_jpa.Dto.Produk.ProdukIdDTO;
-import com.ecommerce.web.jpa.e_commerce_web_jpa.Entities.Omset;
-import com.ecommerce.web.jpa.e_commerce_web_jpa.Service.Omset.OmsetService;
+import com.ecommerce.web.jpa.e_commerce_web_jpa.dto.omset.OmsetDTO;
+import com.ecommerce.web.jpa.e_commerce_web_jpa.dto.produk.ProdukIdDTO;
+import com.ecommerce.web.jpa.e_commerce_web_jpa.entities.Omset;
+import com.ecommerce.web.jpa.e_commerce_web_jpa.service.omset.OmsetService;
 
 import jakarta.validation.ConstraintViolationException;
 

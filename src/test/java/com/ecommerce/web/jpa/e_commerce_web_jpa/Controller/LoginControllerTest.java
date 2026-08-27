@@ -1,4 +1,4 @@
-package com.ecommerce.web.jpa.e_commerce_web_jpa.Controller;
+package com.ecommerce.web.jpa.e_commerce_web_jpa.controller;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,24 +16,24 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @AutoConfigureMockMvc
 public class LoginControllerTest {
 
-    @Autowired
-    private MockMvc mockMvc;
+        @Autowired
+        private MockMvc mockMvc;
 
-    @Test
-    void testLoginEmailAndPassword() throws Exception {
-        mockMvc.perform(
-                get("/login")).andExpect(
-                        status().isOk());
-    }
+        @Test
+        void testLoginEmailAndPassword() throws Exception {
+                mockMvc.perform(
+                                get("/login")).andExpect(
+                                                status().isOk());
+        }
 
-    @Test
-    void testPostLoginEmailAndPassword() throws Exception {
-        mockMvc.perform(
-                post("/loginemailandpassword")
-                        .param("email", "taufiq@gmail.com")
-                        .param("password", "taufiq123"))
-                .andExpectAll(
-                        status().is3xxRedirection(),
-                        request().sessionAttribute("idMember", "80a542"));
-    }
+        @Test
+        void testPostLoginEmailAndPassword() throws Exception {
+                mockMvc.perform(
+                                post("/loginemailandpassword")
+                                                .param("email", "taufiq@gmail.com")
+                                                .param("password", "taufiq123"))
+                                .andExpectAll(
+                                                status().is3xxRedirection(),
+                                                request().sessionAttribute("idMember", "80a542"));
+        }
 }

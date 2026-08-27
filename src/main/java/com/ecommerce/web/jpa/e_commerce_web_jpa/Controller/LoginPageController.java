@@ -1,4 +1,4 @@
-package com.ecommerce.web.jpa.e_commerce_web_jpa.Controller;
+package com.ecommerce.web.jpa.e_commerce_web_jpa.controller;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
@@ -8,10 +8,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.ecommerce.web.jpa.e_commerce_web_jpa.Entities.Member;
-import com.ecommerce.web.jpa.e_commerce_web_jpa.Entities.Staff;
-import com.ecommerce.web.jpa.e_commerce_web_jpa.Service.Member.MemberService;
-import com.ecommerce.web.jpa.e_commerce_web_jpa.Service.Staff.StaffService;
+import com.ecommerce.web.jpa.e_commerce_web_jpa.entities.Member;
+import com.ecommerce.web.jpa.e_commerce_web_jpa.entities.Staff;
+import com.ecommerce.web.jpa.e_commerce_web_jpa.service.member.MemberService;
+import com.ecommerce.web.jpa.e_commerce_web_jpa.service.staff.StaffService;
 
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;

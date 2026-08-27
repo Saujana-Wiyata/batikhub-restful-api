@@ -1,4 +1,4 @@
-package com.ecommerce.web.jpa.e_commerce_web_jpa.Controller.Staff;
+package com.ecommerce.web.jpa.e_commerce_web_jpa.controller.staff;
 
 import java.util.Base64;
 import java.util.HashMap;
@@ -9,8 +9,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.ecommerce.web.jpa.e_commerce_web_jpa.Entities.Embed.Alamat;
-import com.ecommerce.web.jpa.e_commerce_web_jpa.Service.Transaksi.TransaksiService;
+import com.ecommerce.web.jpa.e_commerce_web_jpa.entities.embed.Alamat;
+import com.ecommerce.web.jpa.e_commerce_web_jpa.service.transaksi.TransaksiService;
 
 import lombok.RequiredArgsConstructor;
 

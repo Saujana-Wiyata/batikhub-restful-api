@@ -1,4 +1,4 @@
-package com.ecommerce.web.jpa.e_commerce_web_jpa.Controller.Staff;
+package com.ecommerce.web.jpa.e_commerce_web_jpa.controller.staff;
 
 import java.util.Map;
 
@@ -8,9 +8,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.ecommerce.web.jpa.e_commerce_web_jpa.Dto.Staff.StaffUpdateDTO;
-import com.ecommerce.web.jpa.e_commerce_web_jpa.Entities.Staff;
-import com.ecommerce.web.jpa.e_commerce_web_jpa.Service.Staff.StaffService;
+import com.ecommerce.web.jpa.e_commerce_web_jpa.dto.staff.StaffUpdateDTO;
+import com.ecommerce.web.jpa.e_commerce_web_jpa.entities.Staff;
+import com.ecommerce.web.jpa.e_commerce_web_jpa.service.staff.StaffService;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.PostMapping;

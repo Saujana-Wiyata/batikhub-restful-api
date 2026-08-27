@@ -1,4 +1,4 @@
-package com.ecommerce.web.jpa.e_commerce_web_jpa.Controller;
+package com.ecommerce.web.jpa.e_commerce_web_jpa.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -6,8 +6,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.ecommerce.web.jpa.e_commerce_web_jpa.Dto.Member.MemberInputDTO;
-import com.ecommerce.web.jpa.e_commerce_web_jpa.Service.Member.MemberService;
+import com.ecommerce.web.jpa.e_commerce_web_jpa.dto.member.MemberInputDTO;
+import com.ecommerce.web.jpa.e_commerce_web_jpa.service.member.MemberService;
 
 import lombok.RequiredArgsConstructor;
 

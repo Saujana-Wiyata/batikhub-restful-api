@@ -1,4 +1,4 @@
-package com.ecommerce.web.jpa.e_commerce_web_jpa.Service.Produk;
+package com.ecommerce.web.jpa.e_commerce_web_jpa.service.produk;
 
 import java.io.IOException;
 import java.util.List;
@@ -6,11 +6,11 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.annotation.Validated;
 
-import com.ecommerce.web.jpa.e_commerce_web_jpa.Dto.Produk.ProdukInsertDTO;
-import com.ecommerce.web.jpa.e_commerce_web_jpa.Dto.Produk.ProdukUpdateDTO;
-import com.ecommerce.web.jpa.e_commerce_web_jpa.Entities.Produk;
-import com.ecommerce.web.jpa.e_commerce_web_jpa.Entities.Enum.ProductCategory;
-import com.ecommerce.web.jpa.e_commerce_web_jpa.Repositories.ProdukRepository;
+import com.ecommerce.web.jpa.e_commerce_web_jpa.dto.produk.ProdukInsertDTO;
+import com.ecommerce.web.jpa.e_commerce_web_jpa.dto.produk.ProdukUpdateDTO;
+import com.ecommerce.web.jpa.e_commerce_web_jpa.dto.produk.ProdukInsertDTO;
+import com.ecommerce.web.jpa.e_commerce_web_jpa.dto.produk.ProdukUpdateDTO;
+import com.ecommerce.web.jpa.e_commerce_web_jpa.repositories.ProdukRepository;ry;
 
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotBlank;

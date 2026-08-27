@@ -1,11 +1,11 @@
-package com.ecommerce.web.jpa.e_commerce_web_jpa.Dto.Produk;
+package com.ecommerce.web.jpa.e_commerce_web_jpa.dto.produk;
 
 import java.util.List;
 
 import org.springframework.web.multipart.MultipartFile;
 
-import com.ecommerce.web.jpa.e_commerce_web_jpa.Entities.Omset;
-import com.ecommerce.web.jpa.e_commerce_web_jpa.Entities.Transaksi;
+import com.ecommerce.web.jpa.e_commerce_web_jpa.entities.Omset;
+import com.ecommerce.web.jpa.e_commerce_web_jpa.entities.Transaksi;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Positive;

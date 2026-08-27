@@ -1,4 +1,4 @@
-package com.ecommerce.web.jpa.e_commerce_web_jpa.Dto.Staff;
+package com.ecommerce.web.jpa.e_commerce_web_jpa.dto.staff;
 
 import jakarta.validation.constraints.Email;
 import lombok.Data;

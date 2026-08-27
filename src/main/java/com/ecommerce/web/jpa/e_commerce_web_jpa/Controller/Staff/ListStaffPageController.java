@@ -1,4 +1,4 @@
-package com.ecommerce.web.jpa.e_commerce_web_jpa.Controller.Staff;
+package com.ecommerce.web.jpa.e_commerce_web_jpa.controller.staff;
 
 import java.util.HashMap;
 import java.util.List;
@@ -9,9 +9,9 @@ import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.ecommerce.web.jpa.e_commerce_web_jpa.Entities.Enum.Role;
-import com.ecommerce.web.jpa.e_commerce_web_jpa.Service.Staff.StaffService;
-import com.ecommerce.web.jpa.e_commerce_web_jpa.Utilities.UtilityCookieName;
+import com.ecommerce.web.jpa.e_commerce_web_jpa.entities.Enum.Role;
+import com.ecommerce.web.jpa.e_commerce_web_jpa.service.staff.StaffService;
+import com.ecommerce.web.jpa.e_commerce_web_jpa.utilities.UtilityCookieName;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.PostMapping;

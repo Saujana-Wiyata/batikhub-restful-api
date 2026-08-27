@@ -1,4 +1,4 @@
-package com.ecommerce.web.jpa.e_commerce_web_jpa.Entities.Embed;
+package com.ecommerce.web.jpa.e_commerce_web_jpa.entities.embed;
 
 import jakarta.persistence.Embeddable;
 import lombok.AllArgsConstructor;

@@ -1,4 +1,4 @@
-package com.ecommerce.web.jpa.e_commerce_web_jpa.Controller.Member;
+package com.ecommerce.web.jpa.e_commerce_web_jpa.controller.member;
 
 import java.util.Base64;
 import java.util.Hashtable;
@@ -9,8 +9,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.ecommerce.web.jpa.e_commerce_web_jpa.Entities.Produk;
-import com.ecommerce.web.jpa.e_commerce_web_jpa.Service.Produk.ProdukService;
+import com.ecommerce.web.jpa.e_commerce_web_jpa.entities.Produk;
+import com.ecommerce.web.jpa.e_commerce_web_jpa.service.produk.ProdukService;
 
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;

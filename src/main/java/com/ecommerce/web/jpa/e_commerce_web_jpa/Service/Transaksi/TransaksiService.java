@@ -1,9 +1,9 @@
-package com.ecommerce.web.jpa.e_commerce_web_jpa.Service.Transaksi;
+package com.ecommerce.web.jpa.e_commerce_web_jpa.service.transaksi;
 
 import java.util.List;
 
-import com.ecommerce.web.jpa.e_commerce_web_jpa.Dto.Transaksi.TransaksiInsertDTO;
-import com.ecommerce.web.jpa.e_commerce_web_jpa.Entities.Transaksi;
+import com.ecommerce.web.jpa.e_commerce_web_jpa.dto.transaksi.TransaksiInsertDTO;
+import com.ecommerce.web.jpa.e_commerce_web_jpa.entities.Transaksi;
 
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.Positive;

@@ -1,8 +1,8 @@
-package com.ecommerce.web.jpa.e_commerce_web_jpa.Dto.Member;
+package com.ecommerce.web.jpa.e_commerce_web_jpa.dto.member;
 
 import java.util.List;
 
-import com.ecommerce.web.jpa.e_commerce_web_jpa.Entities.Transaksi;
+import com.ecommerce.web.jpa.e_commerce_web_jpa.entities.Transaksi;
 
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.Email;

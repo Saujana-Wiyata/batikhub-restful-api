@@ -1,4 +1,4 @@
-package com.ecommerce.web.jpa.e_commerce_web_jpa.Repositories;
+package com.ecommerce.web.jpa.e_commerce_web_jpa.repositories;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
@@ -6,7 +6,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.ecommerce.web.jpa.e_commerce_web_jpa.Entities.Omset;
+import com.ecommerce.web.jpa.e_commerce_web_jpa.entities.Omset;
 
 public interface OmsetRespository extends JpaRepository<Omset, Integer> {
 

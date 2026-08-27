@@ -1,8 +1,8 @@
-package com.ecommerce.web.jpa.e_commerce_web_jpa.Entities;
+package com.ecommerce.web.jpa.e_commerce_web_jpa.entities;
 
 import java.util.List;
 
-import com.ecommerce.web.jpa.e_commerce_web_jpa.Entities.Embed.Alamat;
+import com.ecommerce.web.jpa.e_commerce_web_jpa.entities.Embed.Alamat;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Embedded;

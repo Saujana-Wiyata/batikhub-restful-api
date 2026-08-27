@@ -1,4 +1,4 @@
-package com.ecommerce.web.jpa.e_commerce_web_jpa.Service.Staff;
+package com.ecommerce.web.jpa.e_commerce_web_jpa.service.staff;
 
 import java.util.List;
 import java.util.UUID;
@@ -6,11 +6,11 @@ import java.util.UUID;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.annotation.Validated;
 
-import com.ecommerce.web.jpa.e_commerce_web_jpa.Dto.Staff.StaffRequestDTO;
-import com.ecommerce.web.jpa.e_commerce_web_jpa.Dto.Staff.StaffUpdateDTO;
-import com.ecommerce.web.jpa.e_commerce_web_jpa.Entities.Staff;
-import com.ecommerce.web.jpa.e_commerce_web_jpa.Entities.Enum.Role;
-import com.ecommerce.web.jpa.e_commerce_web_jpa.Repositories.StaffRepository;
+import com.ecommerce.web.jpa.e_commerce_web_jpa.dto.staff.StaffRequestDTO;
+import com.ecommerce.web.jpa.e_commerce_web_jpa.dto.staff.StaffUpda
+import com.ecommerce.web.jpa.e_commerce_web_jpa.dto.staff.StaffRequestDTO;
+import com.ecommerce.web.jpa.e_commerce_web_jpa.dto.staff.StaffUpdateDTO;
+import com.ecommerce.web.jpa.e_commerce_web_jpa.repositories.StaffRepository;ory;
 
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotBlank;

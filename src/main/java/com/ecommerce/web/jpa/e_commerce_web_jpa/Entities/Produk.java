@@ -1,8 +1,8 @@
-package com.ecommerce.web.jpa.e_commerce_web_jpa.Entities;
+package com.ecommerce.web.jpa.e_commerce_web_jpa.entities;
 
 import java.util.List;
 
-import com.ecommerce.web.jpa.e_commerce_web_jpa.Entities.Enum.ProductCategory;
+import com.ecommerce.web.jpa.e_commerce_web_jpa.entities.Enum.ProductCategory;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;

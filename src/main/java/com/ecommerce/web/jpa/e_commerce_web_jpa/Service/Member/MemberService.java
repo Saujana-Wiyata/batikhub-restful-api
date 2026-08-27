@@ -1,8 +1,8 @@
-package com.ecommerce.web.jpa.e_commerce_web_jpa.Service.Member;
+package com.ecommerce.web.jpa.e_commerce_web_jpa.service.member;
 
-import com.ecommerce.web.jpa.e_commerce_web_jpa.Dto.Member.MemberInputDTO;
-import com.ecommerce.web.jpa.e_commerce_web_jpa.Dto.Member.MemberUpdateDTO;
-import com.ecommerce.web.jpa.e_commerce_web_jpa.Entities.Member;
+import com.ecommerce.web.jpa.e_commerce_web_jpa.dto.member.MemberInputDTO;
+import com.ecommerce.web.jpa.e_commerce_web_jpa.dto.member.MemberUpdateDTO;
+import com.ecommerce.web.jpa.e_commerce_web_jpa.entities.Member;
 
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotBlank;

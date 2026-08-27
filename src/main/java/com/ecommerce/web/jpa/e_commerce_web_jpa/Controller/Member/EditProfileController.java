@@ -1,4 +1,4 @@
-package com.ecommerce.web.jpa.e_commerce_web_jpa.Controller.Member;
+package com.ecommerce.web.jpa.e_commerce_web_jpa.controller.member;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -9,10 +9,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.ecommerce.web.jpa.e_commerce_web_jpa.Dto.Member.MemberUpdateDTO;
-import com.ecommerce.web.jpa.e_commerce_web_jpa.Entities.Member;
-import com.ecommerce.web.jpa.e_commerce_web_jpa.Entities.Embed.Alamat;
-import com.ecommerce.web.jpa.e_commerce_web_jpa.Service.Member.MemberService;
+import com.ecommerce.web.jpa.e_commerce_web_jpa.dto.member.MemberUpdateDTO;
+import com.ecommerce.web.jpa.e_commerce_web_jpa.entities.Member;
+import com.ecommerce.web.jpa.e_commerce_web_jpa.entities.embed.Alamat;
+import com.ecommerce.web.jpa.e_commerce_web_jpa.service.member.MemberService;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.PostMapping;

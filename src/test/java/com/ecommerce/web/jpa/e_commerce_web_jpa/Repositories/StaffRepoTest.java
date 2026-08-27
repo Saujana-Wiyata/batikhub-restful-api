@@ -1,12 +1,13 @@
-package com.ecommerce.web.jpa.e_commerce_web_jpa.Repositories;
+package com.ecommerce.web.jpa.e_commerce_web_jpa.repositories;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import com.ecommerce.web.jpa.e_commerce_web_jpa.Entities.Staff;
-import com.ecommerce.web.jpa.e_commerce_web_jpa.Entities.Enum.Role;
+import com.ecommerce.web.jpa.e_commerce_web_jpa.entities.Staff;
+import com.ecommerce.web.jpa.e_commerce_web_jpa.entities.Enum.Role;
+import com.ecommerce.web.jpa.e_commerce_web_jpa.repositories.StaffRepository;
 
 @SpringBootTest
 public class StaffRepoTest {

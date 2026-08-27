@@ -1,4 +1,4 @@
-package com.ecommerce.web.jpa.e_commerce_web_jpa.Controller.Member;
+package com.ecommerce.web.jpa.e_commerce_web_jpa.controller.member;
 
 import java.util.HashMap;
 import java.util.List;
@@ -7,8 +7,8 @@ import java.util.Map;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 
-import com.ecommerce.web.jpa.e_commerce_web_jpa.Service.Transaksi.TransaksiService;
-import com.ecommerce.web.jpa.e_commerce_web_jpa.Utilities.UtilityCookieName;
+import com.ecommerce.web.jpa.e_commerce_web_jpa.service.transaksi.TransaksiService;
+import com.ecommerce.web.jpa.e_commerce_web_jpa.utilities.UtilityCookieName;
 
 import lombok.RequiredArgsConstructor;
 

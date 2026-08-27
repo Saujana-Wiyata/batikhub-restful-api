@@ -1,12 +1,13 @@
-package com.ecommerce.web.jpa.e_commerce_web_jpa.Repositories;
+package com.ecommerce.web.jpa.e_commerce_web_jpa.repositories;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import com.ecommerce.web.jpa.e_commerce_web_jpa.Entities.Member;
-import com.ecommerce.web.jpa.e_commerce_web_jpa.Entities.Embed.Alamat;
+import com.ecommerce.web.jpa.e_commerce_web_jpa.entities.Member;
+import com.ecommerce.web.jpa.e_commerce_web_jpa.entities.embed.Alamat;
+import com.ecommerce.web.jpa.e_commerce_web_jpa.repositories.MemberRepository;
 
 @SpringBootTest
 public class MemberRepoTest {

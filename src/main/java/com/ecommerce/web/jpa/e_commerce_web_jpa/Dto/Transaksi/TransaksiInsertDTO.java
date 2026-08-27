@@ -1,4 +1,4 @@
-package com.ecommerce.web.jpa.e_commerce_web_jpa.Dto.Transaksi;
+package com.ecommerce.web.jpa.e_commerce_web_jpa.dto.transaksi;
 
 import java.time.LocalDate;
 

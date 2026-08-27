@@ -1,4 +1,4 @@
-package com.ecommerce.web.jpa.e_commerce_web_jpa.Repositories;
+package com.ecommerce.web.jpa.e_commerce_web_jpa.repositories;
 
 import java.util.List;
 
@@ -7,7 +7,7 @@ import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
-import com.ecommerce.web.jpa.e_commerce_web_jpa.Entities.Produk;
+import com.ecommerce.web.jpa.e_commerce_web_jpa.entities.Produk;
 
 import jakarta.transaction.Transactional;
 

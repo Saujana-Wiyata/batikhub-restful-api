@@ -1,4 +1,4 @@
-package com.ecommerce.web.jpa.e_commerce_web_jpa.Utilities;
+package com.ecommerce.web.jpa.e_commerce_web_jpa.utilities;
 
 public class UtilityCookieName {
 

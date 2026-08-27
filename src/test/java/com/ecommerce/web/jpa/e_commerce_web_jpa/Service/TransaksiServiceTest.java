@@ -1,4 +1,4 @@
-package com.ecommerce.web.jpa.e_commerce_web_jpa.Service;
+package com.ecommerce.web.jpa.e_commerce_web_jpa.service;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -8,9 +8,9 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import com.ecommerce.web.jpa.e_commerce_web_jpa.Dto.Transaksi.TransaksiInsertDTO;
-import com.ecommerce.web.jpa.e_commerce_web_jpa.Entities.Transaksi;
-import com.ecommerce.web.jpa.e_commerce_web_jpa.Service.Transaksi.TransaksiService;
+import com.ecommerce.web.jpa.e_commerce_web_jpa.dto.transaksi.TransaksiInsertDTO;
+import com.ecommerce.web.jpa.e_commerce_web_jpa.entities.Transaksi;
+import com.ecommerce.web.jpa.e_commerce_web_jpa.service.transaksi.TransaksiService;
 
 import jakarta.validation.ConstraintViolationException;
 

@@ -1,12 +1,12 @@
-package com.ecommerce.web.jpa.e_commerce_web_jpa.Controller.Staff;
+package com.ecommerce.web.jpa.e_commerce_web_jpa.controller.staff;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.ecommerce.web.jpa.e_commerce_web_jpa.Dto.Staff.StaffRequestDTO;
-import com.ecommerce.web.jpa.e_commerce_web_jpa.Service.Staff.StaffService;
+import com.ecommerce.web.jpa.e_commerce_web_jpa.dto.staff.StaffRequestDTO;
+import com.ecommerce.web.jpa.e_commerce_web_jpa.service.staff.StaffService;
 
 import lombok.RequiredArgsConstructor;
 

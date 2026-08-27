@@ -1,4 +1,4 @@
-package com.ecommerce.web.jpa.e_commerce_web_jpa.Controller.Member;
+package com.ecommerce.web.jpa.e_commerce_web_jpa.controller.member;
 
 import java.time.LocalDate;
 import java.util.Base64;
@@ -9,13 +9,13 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.ecommerce.web.jpa.e_commerce_web_jpa.Dto.Transaksi.TransaksiInsertDTO;
-import com.ecommerce.web.jpa.e_commerce_web_jpa.Entities.Member;
-import com.ecommerce.web.jpa.e_commerce_web_jpa.Entities.Produk;
-import com.ecommerce.web.jpa.e_commerce_web_jpa.Entities.Embed.Alamat;
-import com.ecommerce.web.jpa.e_commerce_web_jpa.Service.Member.MemberService;
-import com.ecommerce.web.jpa.e_commerce_web_jpa.Service.Produk.ProdukService;
-import com.ecommerce.web.jpa.e_commerce_web_jpa.Service.Transaksi.TransaksiService;
+import com.ecommerce.web.jpa.e_commerce_web_jpa.dto.transaksi.TransaksiInsertDTO;
+import com.ecommerce.web.jpa.e_commerce_web_jpa.entities.Member;
+import com.ecommerce.web.jpa.e_commerce_web_jpa.entities.Produk;
+import com.ecommerce.web.jpa.e_commerce_web_jpa.entities.embed.Alamat;
+import com.ecommerce.web.jpa.e_commerce_web_jpa.service.member.MemberService;
+import com.ecommerce.web.jpa.e_commerce_web_jpa.service.produk.ProdukService;
+import com.ecommerce.web.jpa.e_commerce_web_jpa.service.transaksi.TransaksiService;
 
 import lombok.RequiredArgsConstructor;
 

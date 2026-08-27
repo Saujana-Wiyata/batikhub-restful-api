@@ -1,6 +1,6 @@
-package com.ecommerce.web.jpa.e_commerce_web_jpa.Dto.Member;
+package com.ecommerce.web.jpa.e_commerce_web_jpa.dto.member;
 
-import com.ecommerce.web.jpa.e_commerce_web_jpa.Entities.Embed.Alamat;
+import com.ecommerce.web.jpa.e_commerce_web_jpa.entities.embed.Alamat;
 
 import jakarta.validation.Valid;
 import lombok.Data;

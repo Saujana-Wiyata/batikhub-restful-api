@@ -1,4 +1,4 @@
-package com.ecommerce.web.jpa.e_commerce_web_jpa.Entities;
+package com.ecommerce.web.jpa.e_commerce_web_jpa.entities;
 
 import java.time.LocalDate;
 

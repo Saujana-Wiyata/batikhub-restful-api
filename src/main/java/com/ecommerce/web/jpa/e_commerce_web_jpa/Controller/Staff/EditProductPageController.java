@@ -1,4 +1,4 @@
-package com.ecommerce.web.jpa.e_commerce_web_jpa.Controller.Staff;
+package com.ecommerce.web.jpa.e_commerce_web_jpa.controller.staff;
 
 import java.util.Base64;
 import java.util.HashMap;
@@ -10,9 +10,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.ecommerce.web.jpa.e_commerce_web_jpa.Dto.Produk.ProdukUpdateDTO;
-import com.ecommerce.web.jpa.e_commerce_web_jpa.Entities.Produk;
-import com.ecommerce.web.jpa.e_commerce_web_jpa.Service.Produk.ProdukService;
+import com.ecommerce.web.jpa.e_commerce_web_jpa.dto.produk.ProdukUpdateDTO;
+import com.ecommerce.web.jpa.e_commerce_web_jpa.entities.Produk;
+import com.ecommerce.web.jpa.e_commerce_web_jpa.service.produk.ProdukService;
 
 import lombok.RequiredArgsConstructor;
 

@@ -1,6 +1,6 @@
-package com.ecommerce.web.jpa.e_commerce_web_jpa.Entities;
+package com.ecommerce.web.jpa.e_commerce_web_jpa.entities;
 
-import com.ecommerce.web.jpa.e_commerce_web_jpa.Entities.Enum.Role;
+import com.ecommerce.web.jpa.e_commerce_web_jpa.entities.Enum.Role;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;

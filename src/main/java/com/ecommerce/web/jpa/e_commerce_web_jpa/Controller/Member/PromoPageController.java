@@ -1,4 +1,4 @@
-package com.ecommerce.web.jpa.e_commerce_web_jpa.Controller.Member;
+package com.ecommerce.web.jpa.e_commerce_web_jpa.controller.member;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;

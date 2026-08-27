@@ -1,8 +1,8 @@
-package com.ecommerce.web.jpa.e_commerce_web_jpa.Repositories;
+package com.ecommerce.web.jpa.e_commerce_web_jpa.repositories;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import com.ecommerce.web.jpa.e_commerce_web_jpa.Entities.Member;
+import com.ecommerce.web.jpa.e_commerce_web_jpa.entities.Member;
 
 public interface MemberRepository extends JpaRepository<Member, String> {
 

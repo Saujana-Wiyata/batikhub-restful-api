@@ -1,10 +1,10 @@
-package com.ecommerce.web.jpa.e_commerce_web_jpa.Service.Staff;
+package com.ecommerce.web.jpa.e_commerce_web_jpa.service.staff;
 
 import java.util.List;
 
-import com.ecommerce.web.jpa.e_commerce_web_jpa.Dto.Staff.StaffRequestDTO;
-import com.ecommerce.web.jpa.e_commerce_web_jpa.Dto.Staff.StaffUpdateDTO;
-import com.ecommerce.web.jpa.e_commerce_web_jpa.Entities.Staff;
+import com.ecommerce.web.jpa.e_commerce_web_jpa.dto.staff.StaffRequestDTO;
+import com.ecommerce.web.jpa.e_commerce_web_jpa.dto.staff.StaffUpdateDTO;
+import com.ecommerce.web.jpa.e_commerce_web_jpa.entities.Staff;
 
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotBlank;

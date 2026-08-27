@@ -1,4 +1,4 @@
-package com.ecommerce.web.jpa.e_commerce_web_jpa.Service;
+package com.ecommerce.web.jpa.e_commerce_web_jpa.service;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -12,10 +12,10 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.mock.web.MockMultipartFile;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.ecommerce.web.jpa.e_commerce_web_jpa.Dto.Produk.ProdukInsertDTO;
-import com.ecommerce.web.jpa.e_commerce_web_jpa.Dto.Produk.ProdukUpdateDTO;
-import com.ecommerce.web.jpa.e_commerce_web_jpa.Entities.Produk;
-import com.ecommerce.web.jpa.e_commerce_web_jpa.Service.Produk.ProdukService;
+import com.ecommerce.web.jpa.e_commerce_web_jpa.dto.produk.ProdukInsertDTO;
+import com.ecommerce.web.jpa.e_commerce_web_jpa.dto.produk.ProdukUpdateDTO;
+import com.ecommerce.web.jpa.e_commerce_web_jpa.entities.Produk;
+import com.ecommerce.web.jpa.e_commerce_web_jpa.service.produk.ProdukService;
 
 import jakarta.validation.ConstraintViolationException;
 

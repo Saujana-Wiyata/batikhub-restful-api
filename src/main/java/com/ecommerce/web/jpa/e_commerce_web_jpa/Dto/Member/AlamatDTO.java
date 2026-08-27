@@ -1,4 +1,4 @@
-package com.ecommerce.web.jpa.e_commerce_web_jpa.Dto.Member;
+package com.ecommerce.web.jpa.e_commerce_web_jpa.dto.member;
 
 import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;

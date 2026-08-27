@@ -1,13 +1,13 @@
-package com.ecommerce.web.jpa.e_commerce_web_jpa.Global;
+package com.ecommerce.web.jpa.e_commerce_web_jpa.global;
 
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ModelAttribute;
 
-import com.ecommerce.web.jpa.e_commerce_web_jpa.Entities.Member;
-import com.ecommerce.web.jpa.e_commerce_web_jpa.Entities.Staff;
 import com.ecommerce.web.jpa.e_commerce_web_jpa.Service.Member.MemberService;
-import com.ecommerce.web.jpa.e_commerce_web_jpa.Service.Staff.StaffService;
+import com.ecommerce.web.jpa.e_commerce_web_jpa.Service.Staff.S
+import com.ecommerce.web.jpa.e_commerce_web_jpa.service.Member.MemberService;
+import com.ecommerce.web.jpa.e_commerce_web_jpa.service.Staff.StaffService;
 
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;

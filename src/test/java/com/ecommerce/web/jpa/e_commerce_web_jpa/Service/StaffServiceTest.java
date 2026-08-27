@@ -1,14 +1,14 @@
-package com.ecommerce.web.jpa.e_commerce_web_jpa.Service;
+package com.ecommerce.web.jpa.e_commerce_web_jpa.service;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import com.ecommerce.web.jpa.e_commerce_web_jpa.Dto.Staff.StaffRequestDTO;
-import com.ecommerce.web.jpa.e_commerce_web_jpa.Dto.Staff.StaffUpdateDTO;
-import com.ecommerce.web.jpa.e_commerce_web_jpa.Entities.Staff;
-import com.ecommerce.web.jpa.e_commerce_web_jpa.Service.Staff.StaffService;
+import com.ecommerce.web.jpa.e_commerce_web_jpa.dto.staff.StaffRequestDTO;
+import com.ecommerce.web.jpa.e_commerce_web_jpa.dto.staff.StaffUpdateDTO;
+import com.ecommerce.web.jpa.e_commerce_web_jpa.entities.Staff;
+import com.ecommerce.web.jpa.e_commerce_web_jpa.service.staff.StaffService;
 
 import jakarta.validation.ConstraintViolationException;
 
