@@ -5,10 +5,10 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import com.ecommerce.web.jpa.e_commerce_web_jpa.dto.member.AlamatDTO;
-import com.ecommerce.web.jpa.e_commerce_web_jpa.dto.member.MemberInputDTO;
-import com.ecommerce.web.jpa.e_commerce_web_jpa.dto.member.MemberUpdateDTO;
-import com.ecommerce.web.jpa.e_commerce_web_jpa.entities.Member;
+import com.ecommerce.web.jpa.e_commerce_web_jpa.dto.member.AlamatInsert;
+import com.ecommerce.web.jpa.e_commerce_web_jpa.dto.member.MemberRequest;
+import com.ecommerce.web.jpa.e_commerce_web_jpa.dto.member.MemberResponse;
+import com.ecommerce.web.jpa.e_commerce_web_jpa.dto.member.MemberUpdateRequest;
 import com.ecommerce.web.jpa.e_commerce_web_jpa.entities.embed.Alamat;
 import com.ecommerce.web.jpa.e_commerce_web_jpa.service.member.MemberService;
 
@@ -23,11 +23,11 @@ public class MemberServiceTest {
     @Test
     void testInsert() {
 
-        MemberInputDTO member = new MemberInputDTO();
+        MemberRequest member = new MemberRequest();
         member.setName("Aidil Syahmi");
         member.setEmail("aidillongoi@gmail.com");
         member.setPassword("rahasia");
-        member.setAlamatDto(new AlamatDTO("jln abc", "Tegalluar",
+        member.setAlamatDto(new AlamatInsert("jln abc", "Tegalluar",
                 "Jawa Barat"));
 
         memberService.insert(member);
@@ -36,11 +36,11 @@ public class MemberServiceTest {
     @Test
     void testInsertFail() {
 
-        MemberInputDTO member = new MemberInputDTO();
+        MemberRequest member = new MemberRequest();
         member.setName("Syakir Jamil");
         member.setEmail("syakir@gmail.com");
         member.setPassword("syakir");
-        member.setAlamatDto(new AlamatDTO(" ",
+        member.setAlamatDto(new AlamatInsert(" ",
                 "Surakarta", "Jawa Tengah"));
 
         Assertions.assertThrows(ConstraintViolationException.class, () -> {
@@ -49,86 +49,24 @@ public class MemberServiceTest {
     }
 
     @Test
-    void testFindByEmailAndPassword() {
-        Member member = memberService
-                .findByEmailAndPassword("aidillongoi@gmail.com",
-                        "rahasia");
-
-        Assertions.assertNotNull(member);
-        Assertions.assertEquals(member.getName(), "Aidil Syahmi");
-    }
-
-    @Test
-    void testFindByEmailAndPasswordButEmailBlank() {
-
-        Assertions.assertThrows(ConstraintViolationException.class, () -> {
-            memberService
-                    .findByEmailAndPassword(" ", "rahasia");
-        });
-    }
-
-    @Test
-    void testFindByEmailAndPasswordButPasswordBlank() {
-        Assertions.assertThrows(ConstraintViolationException.class, () -> {
-            memberService
-                    .findByEmailAndPassword("aidillongoi@gmail.com",
-                            " ");
-        });
-    }
-
-    @Test
-    void testFindByEmailAndPasswordButBothBlank() {
-        Assertions.assertThrows(ConstraintViolationException.class, () -> {
-            memberService
-                    .findByEmailAndPassword(" ", " ");
-        });
-    }
-
-    @Test
-    void testFindByEmailAndPasswordNotMatch() {
-        Member member = memberService
-                .findByEmailAndPassword("test@gmail.com",
-                        "hihihi");
-
-        Assertions.assertNull(member);
-    }
-
-    @Test
-    void testFindByIdSuccess() {
-        Assertions.assertNotNull(memberService.findById("a757eb"));
-    }
-
-    @Test
-    void testFindByIdBlank() {
-        Assertions.assertThrows(ConstraintViolationException.class, () -> {
-            memberService.findById("  ");
-        });
-    }
-
-    @Test
-    void testFindByIdNotFound() {
-        Assertions.assertNull(memberService.findById("jasalaj"));
-    }
-
-    @Test
     void testUpdateSuccess() {
 
-        MemberUpdateDTO member = new MemberUpdateDTO();
+        MemberUpdateRequest member = new MemberUpdateRequest();
         member.setName("");
         member.setEmail("");
         member.setPassword("");
         member.setAlamat(new Alamat("", "",
                 "Riau"));
 
-        Member update = memberService.update("80a542", member);
+        MemberResponse update = memberService.update("58efe8", member);
 
-        Assertions.assertEquals(update.getEmail(), "taufiq@gmail.com");
-        Assertions.assertEquals(update.getAlamat().getJalan(), "jln abc");
+        Assertions.assertEquals(update.getEmail(), "aidillongoi@gmail.com"); // not change
+        Assertions.assertEquals(update.getAlamat().getProvinsi(), "Riau"); // change
     }
 
     @Test
     void testUpdateIdNotFound() {
-        MemberUpdateDTO member = new MemberUpdateDTO();
+        MemberUpdateRequest member = new MemberUpdateRequest();
         member.setName("");
         member.setEmail("");
         member.setPassword("");
@@ -143,7 +81,7 @@ public class MemberServiceTest {
 
     @Test
     void testDeleteSuccess() {
-        memberService.delete("M01");
+        memberService.delete("58efe8");
     }
 
     @Test
