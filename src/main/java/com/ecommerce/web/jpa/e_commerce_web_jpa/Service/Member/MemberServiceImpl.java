@@ -5,18 +5,14 @@ import java.util.UUID;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.annotation.Validated;
 
-import com.ecommerce.web.jpa.e_commerce_web_jpa.dto.member.MemberInputDTO;
-import com.ecommerce.web.jpa.e_commerce_web_jpa.dto.member.MemberUpdateDTO;
+import com.ecommerce.web.jpa.e_commerce_web_jpa.dto.member.MemberRequest;
+import com.ecommerce.web.jpa.e_commerce_web_jpa.dto.member.MemberResponse;
+import com.ecommerce.web.jpa.e_commerce_web_jpa.dto.member.MemberUpdateRequest;
 import com.ecommerce.web.jpa.e_commerce_web_jpa.entities.Member;
 import com.ecommerce.web.jpa.e_commerce_web_jpa.entities.embed.Alamat;
 import com.ecommerce.web.jpa.e_commerce_web_jpa.repositories.MemberRepository;
 
-// import com.ecommerce.web.jpa.e_commerce_web_jpa.dto.member.MemberInputDTO;
-// import com.ecommerce.web.jpa.e_commerce_web_jpa.dto.member.Member;
-// import com.ecommerce.web.jpa.e_commerce_web_jpa.dto.member.MemberInputDTO;
-// import com.ecommerce.web.jpa.e_commerce_web_jpa.dto.member.MemberUpdateDTO;
-// import com.ecommerce.web.jpa.e_commerce_web_jpa.repositories.MemberRepository;
-
+import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotBlank;
 import lombok.RequiredArgsConstructor;
@@ -29,7 +25,8 @@ public class MemberServiceImpl implements MemberService {
     private final MemberRepository memberRepository;
 
     @Override
-    public void insert(@Valid MemberInputDTO member) {
+    @Transactional
+    public void insert(@Valid MemberRequest member) {
 
         Member memberEntity = new Member();
         memberEntity.setId(UUID.randomUUID().toString()
@@ -44,17 +41,8 @@ public class MemberServiceImpl implements MemberService {
     }
 
     @Override
-    public Member findByEmailAndPassword(@NotBlank String email, @NotBlank String password) {
-        return memberRepository.findByEmailAndPassword(email, password);
-    }
-
-    @Override
-    public Member findById(@NotBlank String id) {
-        return memberRepository.findById(id).orElse(null);
-    }
-
-    @Override
-    public Member update(@NotBlank String id, @Valid MemberUpdateDTO member) {
+    @Transactional
+    public MemberResponse update(@NotBlank String id, @Valid MemberUpdateRequest member) {
         Member findById = memberRepository.findById(id).orElse(null);
 
         Alamat alamatMember = member.getAlamat();
@@ -78,10 +66,13 @@ public class MemberServiceImpl implements MemberService {
         if (!alamatMember.getProvinsi().isBlank())
             alamatFindById.setProvinsi(alamatMember.getProvinsi());
 
-        return memberRepository.save(findById);
+        Member memberSave = memberRepository.save(findById);
+
+        return new MemberResponse(memberSave.getName(), memberSave.getEmail(), memberSave.getAlamat());
     }
 
     @Override
+    @Transactional
     public void delete(@NotBlank String id) {
         Member member = memberRepository.findById(id).orElse(null);
         memberRepository.delete(member);
