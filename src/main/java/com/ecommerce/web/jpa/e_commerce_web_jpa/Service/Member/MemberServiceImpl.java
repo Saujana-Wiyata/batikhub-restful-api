@@ -2,14 +2,16 @@ package com.ecommerce.web.jpa.e_commerce_web_jpa.service.member;
 
 import java.util.UUID;
 
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.annotation.Validated;
+import org.springframework.web.server.ResponseStatusException;
 
-import com.ecommerce.web.jpa.e_commerce_web_jpa.dto.member.MemberRequest;
-import com.ecommerce.web.jpa.e_commerce_web_jpa.dto.member.MemberResponse;
-import com.ecommerce.web.jpa.e_commerce_web_jpa.dto.member.MemberUpdateRequest;
 import com.ecommerce.web.jpa.e_commerce_web_jpa.entities.Member;
 import com.ecommerce.web.jpa.e_commerce_web_jpa.entities.embed.Alamat;
+import com.ecommerce.web.jpa.e_commerce_web_jpa.model.member.MemberRequest;
+import com.ecommerce.web.jpa.e_commerce_web_jpa.model.member.MemberResponse;
+import com.ecommerce.web.jpa.e_commerce_web_jpa.model.member.MemberUpdateRequest;
 import com.ecommerce.web.jpa.e_commerce_web_jpa.repositories.MemberRepository;
 
 import jakarta.transaction.Transactional;
@@ -74,7 +76,9 @@ public class MemberServiceImpl implements MemberService {
     @Override
     @Transactional
     public void delete(@NotBlank String id) {
-        Member member = memberRepository.findById(id).orElse(null);
+        Member member = memberRepository.findById(id).orElseThrow(() -> {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "id not found");
+        });
         memberRepository.delete(member);
     }
 
