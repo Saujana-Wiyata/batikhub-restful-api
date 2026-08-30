@@ -11,7 +11,7 @@ public interface MemberService {
 
     void insert(@Valid MemberRequest member);
 
-    MemberResponse update(@NotBlank String id, @Valid MemberUpdateRequest member);
+    MemberResponse update(@NotBlank String token, @Valid MemberUpdateRequest member);
 
     void delete(@NotBlank String id);
 

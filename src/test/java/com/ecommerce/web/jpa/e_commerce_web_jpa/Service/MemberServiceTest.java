@@ -4,6 +4,7 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.web.server.ResponseStatusException;
 
 import com.ecommerce.web.jpa.e_commerce_web_jpa.entities.embed.Alamat;
 import com.ecommerce.web.jpa.e_commerce_web_jpa.model.member.AlamatInsert;
@@ -58,9 +59,9 @@ public class MemberServiceTest {
         member.setAlamat(new Alamat("", "",
                 "Riau"));
 
-        MemberResponse update = memberService.update("58efe8", member);
+        MemberResponse update = memberService.update("e9804b", member);
 
-        Assertions.assertEquals(update.getEmail(), "aidillongoi@gmail.com"); // not change
+        Assertions.assertEquals(update.getEmail(), "syakirlongoi@gmail.com"); // not change
         Assertions.assertEquals(update.getAlamat().getProvinsi(), "Riau"); // change
     }
 
@@ -86,7 +87,7 @@ public class MemberServiceTest {
 
     @Test
     void testDeleteFail() {
-        Assertions.assertThrows(Exception.class, () -> {
+        Assertions.assertThrows(ResponseStatusException.class, () -> {
             memberService.delete("M01");
         });
     }

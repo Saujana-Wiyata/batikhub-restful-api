@@ -44,8 +44,9 @@ public class MemberServiceImpl implements MemberService {
 
     @Override
     @Transactional
-    public MemberResponse update(@NotBlank String id, @Valid MemberUpdateRequest member) {
-        Member findById = memberRepository.findById(id).orElse(null);
+    public MemberResponse update(@NotBlank String token, @Valid MemberUpdateRequest member) {
+        Member findById = memberRepository.findByToken(token)
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.BAD_REQUEST, "Fail to update your data"));
 
         Alamat alamatMember = member.getAlamat();
         Alamat alamatFindById = findById.getAlamat();
