@@ -28,9 +28,9 @@ public class GlobalErrorHandling {
         public ResponseEntity<WebResponse<String>> exceptionHandler(
                         ResponseStatusException exception) {
 
-                return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                return ResponseEntity.status(exception.getStatusCode())
                                 .body(WebResponse.<String>builder()
-                                                .code(HttpStatus.INTERNAL_SERVER_ERROR.value())
+                                                .code(exception.getStatusCode().value())
                                                 .error(exception.getMessage())
                                                 .build());
         }
