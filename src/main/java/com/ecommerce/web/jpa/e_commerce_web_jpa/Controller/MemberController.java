@@ -12,6 +12,7 @@ import lombok.RequiredArgsConstructor;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -42,6 +43,16 @@ public class MemberController {
         return WebResponse.<MemberResponse>builder()
                 .code(HttpStatus.OK.value())
                 .data(update)
+                .build();
+    }
+
+    @DeleteMapping(path = "/api/v1/member/current", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    public WebResponse<String> deleteMemberData(@RequestHeader String token) {
+
+        memberService.delete(token);
+        return WebResponse.<String>builder()
+                .code(HttpStatus.OK.value())
+                .data("OK")
                 .build();
     }
 }
