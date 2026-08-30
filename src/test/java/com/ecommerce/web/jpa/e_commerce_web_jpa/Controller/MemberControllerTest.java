@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.patch;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -144,6 +145,46 @@ public class MemberControllerTest {
                                         assertNull(value.getData());
                                         assertEquals(400, value.getCode());
                                         assertNotNull(value.getError());
+                                });
+        }
+
+        @Test
+        void testDeleteFailed() throws Exception {
+                mockMvc.perform(
+                                delete("/api/v1/member/current")
+                                                .accept(MediaType.APPLICATION_JSON_VALUE)
+                                                .contentType(MediaType.APPLICATION_JSON_VALUE)
+                                                .header("token", "123"))
+                                .andExpect(status().isNotFound())
+                                .andDo(result -> {
+                                        WebResponse<String> value = objectMapper.readValue(
+                                                        result.getResponse().getContentAsString(),
+                                                        new TypeReference<WebResponse<String>>() {
+                                                        });
+
+                                        assertEquals(404, value.getCode());
+                                        assertNull(value.getData());
+                                        assertNotNull(value.getError());
+                                });
+        }
+
+        @Test
+        void testDeleteSuccess() throws Exception {
+                mockMvc.perform(
+                                delete("/api/v1/member/current")
+                                                .accept(MediaType.APPLICATION_JSON_VALUE)
+                                                .contentType(MediaType.APPLICATION_JSON_VALUE)
+                                                .header("token", "e9804b"))
+                                .andExpect(status().isOk())
+                                .andDo(result -> {
+                                        WebResponse<String> value = objectMapper.readValue(
+                                                        result.getResponse().getContentAsString(),
+                                                        new TypeReference<WebResponse<String>>() {
+                                                        });
+
+                                        assertEquals(200, value.getCode());
+                                        assertNotNull(value.getData());
+                                        assertNull(value.getError());
                                 });
         }
 }
