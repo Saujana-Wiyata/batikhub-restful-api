@@ -13,6 +13,6 @@ public interface MemberService {
 
     MemberResponse update(@NotBlank String token, @Valid MemberUpdateRequest member);
 
-    void delete(@NotBlank String id);
+    void delete(@NotBlank String token);
 
 }

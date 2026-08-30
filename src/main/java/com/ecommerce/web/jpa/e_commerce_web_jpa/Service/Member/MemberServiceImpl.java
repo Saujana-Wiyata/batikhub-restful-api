@@ -76,9 +76,9 @@ public class MemberServiceImpl implements MemberService {
 
     @Override
     @Transactional
-    public void delete(@NotBlank String id) {
-        Member member = memberRepository.findById(id).orElseThrow(() -> {
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "id not found");
+    public void delete(@NotBlank String token) {
+        Member member = memberRepository.findByToken(token).orElseThrow(() -> {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Fail to delete your account");
         });
         memberRepository.delete(member);
     }
