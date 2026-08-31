@@ -1,13 +1,18 @@
 package com.ecommerce.web.jpa.e_commerce_web_jpa.service;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.domain.Page;
+import org.springframework.web.server.ResponseStatusException;
 
-import com.ecommerce.web.jpa.e_commerce_web_jpa.dto.staff.StaffRequestDTO;
-import com.ecommerce.web.jpa.e_commerce_web_jpa.dto.staff.StaffUpdateDTO;
-import com.ecommerce.web.jpa.e_commerce_web_jpa.entities.Staff;
+import com.ecommerce.web.jpa.e_commerce_web_jpa.entities.enums.Role;
+import com.ecommerce.web.jpa.e_commerce_web_jpa.model.staff.StaffRequest;
+import com.ecommerce.web.jpa.e_commerce_web_jpa.model.staff.StaffResponse;
+import com.ecommerce.web.jpa.e_commerce_web_jpa.model.staff.StaffUpdateRequest;
 import com.ecommerce.web.jpa.e_commerce_web_jpa.service.staff.StaffService;
 
 import jakarta.validation.ConstraintViolationException;
@@ -20,7 +25,7 @@ public class StaffServiceTest {
 
     @Test
     void testInsertSuccess() {
-        StaffRequestDTO staffRequestDTO = new StaffRequestDTO();
+        StaffRequest staffRequestDTO = new StaffRequest();
         staffRequestDTO.setEmail("khairy@gmail.com");
         staffRequestDTO.setPassword("khairy123");
         staffRequestDTO.setName("Khairy Aimar");
@@ -31,9 +36,9 @@ public class StaffServiceTest {
 
     @Test
     void testInsertFail() {
-        StaffRequestDTO staffRequestDTO = new StaffRequestDTO();
+        StaffRequest staffRequestDTO = new StaffRequest();
         staffRequestDTO.setPassword("abu");
-        staffRequestDTO.setName("  ");
+        staffRequestDTO.setName(" ");
         staffRequestDTO.setEmail("abu.com");
         staffRequestDTO.setRole("STAFF");
 
@@ -44,82 +49,48 @@ public class StaffServiceTest {
     }
 
     @Test
-    void testFindByEmailAndPasswordSuccess() {
-        Staff staff = staffService
-                .findByEmailAndPassword("test@gmail.com", "test");
+    void testUpdateSuccess() {
 
-        Assertions.assertNotNull(staff);
-        Assertions.assertEquals(staff.getName(), "Ali");
-    }
-
-    @Test
-    void testFindByEmailAndPasswordButEmailBlank() {
-
-        Assertions.assertThrows(ConstraintViolationException.class, () -> {
-            staffService.findByEmailAndPassword("  ", "test");
-        });
-    }
-
-    @Test
-    void testFindByEmailAndPasswordButPasswordBlank() {
-
-        Assertions.assertThrows(ConstraintViolationException.class, () -> {
-            staffService.findByEmailAndPassword("test@gmail.com", "  ");
-        });
-    }
-
-    @Test
-    void testFindByEmailAndPasswordNotMatch() {
-        Staff staff = staffService
-                .findByEmailAndPassword("test@gmail.com", "hihih");
-
-        Assertions.assertNull(staff);
-    }
-
-    @Test
-    void testFindByIdSuccess() {
-        Staff byId = staffService.findById("6cea3ae3");
-
-        Assertions.assertNotNull(byId);
-        Assertions.assertEquals(byId.getName(), "Ali");
-    }
-
-    @Test
-    void testUpdate() {
-
-        StaffUpdateDTO staff = new StaffUpdateDTO();
+        StaffUpdateRequest staff = new StaffUpdateRequest();
         staff.setName("");
         staff.setEmail("");
-        staff.setPassword("test");
-        staff.setRole("");
+        staff.setPassword("");
+        staff.setRole("HR");
 
-        Staff update = staffService.update("6cea3ae3", staff);
+        StaffResponse update = staffService.update("47695a", staff);
 
-        Assertions.assertEquals(update.getName(), "Test");
+        Assertions.assertEquals(update.getRole(), Role.HR);
     }
 
     @Test
-    void testUpdatNotSuccess() {
-        StaffUpdateDTO staff = new StaffUpdateDTO();
+    void testUpdateFail() {
+        StaffUpdateRequest staff = new StaffUpdateRequest();
         staff.setName("");
         staff.setEmail("test.com");
         staff.setPassword("");
         staff.setRole("");
 
         Assertions.assertThrows(ConstraintViolationException.class, () -> {
-            staffService.update("6cea3ae3", staff);
+            staffService.update("47695a", staff);
         });
     }
 
     @Test
     void testDeleteSuccess() {
-        staffService.delete("769c7f0d");
+        staffService.delete("f262c505");
     }
 
     @Test
     void testDeleteFail() {
-        Assertions.assertThrows(Exception.class, () -> {
+        Assertions.assertThrows(ResponseStatusException.class, () -> {
             staffService.delete("769c7f0d");
         });
+    }
+
+    @Test
+    void testFindAll() {
+        Page<StaffResponse> all = staffService.findAll();
+
+        assertEquals(0, all.getTotalElements());
     }
 }
