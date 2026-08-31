@@ -26,7 +26,7 @@ public class AuthServiceImpl implements AuthService {
 
     private final StaffRepository staffRepository;
 
-    private Optional<AuthResponse> memberLogin(AuthRequest authRequest) {
+    private Optional<AuthResponse> memberLoginByEmailAndPassword(AuthRequest authRequest) {
         return memberRepository.findByEmailAndPassword(authRequest.getEmail(), authRequest.getPassword())
                 .map(t -> {
                     t.setToken(UUID.randomUUID().toString().substring(0, 6));
@@ -35,7 +35,7 @@ public class AuthServiceImpl implements AuthService {
                 });
     }
 
-    private Optional<AuthResponse> staffLogin(AuthRequest authRequest) {
+    private Optional<AuthResponse> staffLoginByEmailAndPassword(AuthRequest authRequest) {
         return staffRepository.findByEmailAndPassword(authRequest.getEmail(), authRequest.getPassword())
                 .map(staff -> {
                     staff.setToken(UUID.randomUUID().toString().substring(0, 6));
@@ -44,25 +44,66 @@ public class AuthServiceImpl implements AuthService {
                 });
     }
 
+    private Optional<AuthResponse> memberLoginById(String id) {
+
+        return memberRepository.findById(id).map(member -> {
+            member.setToken(UUID.randomUUID().toString().substring(0, 6));
+            member.setTokenExpired("123123123123");
+            return new AuthResponse(member.getToken(), member.getTokenExpired());
+        });
+    }
+
+    private Optional<AuthResponse> staffLoginById(String id) {
+
+        return staffRepository.findById(id).map(staff -> {
+            staff.setToken(UUID.randomUUID().toString().substring(0, 6));
+            staff.setTokenExpired("123123123123");
+            return new AuthResponse(staff.getToken(), staff.getTokenExpired());
+        });
+    }
+
+    private Optional<AuthResponse> memberLogout(String token) {
+
+        return memberRepository.findByToken(token).map(member -> {
+            member.setToken(null);
+            member.setTokenExpired(null);
+            return new AuthResponse(member.getToken(), member.getTokenExpired());
+        });
+    }
+
+    private Optional<AuthResponse> staffLogout(String token) {
+
+        return staffRepository.findByToken(token).map(staff -> {
+            staff.setToken(null);
+            staff.setTokenExpired(null);
+            return new AuthResponse(staff.getToken(), staff.getTokenExpired());
+        });
+    }
+
     @Override
     @Transactional
     public AuthResponse loginByEmailAndPassword(@Valid AuthRequest authRequest) {
-        return memberLogin(authRequest)
-                .or(() -> staffLogin(authRequest))
+
+        return memberLoginByEmailAndPassword(authRequest)
+                .or(() -> staffLoginByEmailAndPassword(authRequest))
                 .orElseThrow(
                         () -> new ResponseStatusException(HttpStatus.UNAUTHORIZED,
-                                "your email and password incorrect"));
+                                "Unauthorized"));
     }
 
     @Override
     public AuthResponse loginById(String id) {
-        return null;
+
+        return memberLoginById(id)
+                .or(() -> staffLoginById(id))
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.UNAUTHORIZED, "Unauthorized"));
     }
 
     @Override
     public void logout(String token) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'logout'");
-    }
 
+        memberLogout(token)
+                .or(() -> staffLogout(token))
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.UNAUTHORIZED, "Unauthorized"));
+    }
 }
