@@ -23,7 +23,7 @@ public class AuthServiceTest {
     private AuthService authService;
 
     @Test
-    void testMemberLogin() {
+    void testMemberLoginByEmailPasswordSuccess() {
         AuthResponse member = authService.loginByEmailAndPassword(
                 new AuthRequest("syakirlongoi@gmail.com", "syakir123"));
 
@@ -32,7 +32,7 @@ public class AuthServiceTest {
     }
 
     @Test
-    void testMemberLoginBlank() {
+    void testMemberLoginByEmailPasswordBlank() {
         assertThrows(ConstraintViolationException.class, () -> {
             authService.loginByEmailAndPassword(
                     new AuthRequest("syakirlongoi@gmail.com", ""));
@@ -40,10 +40,19 @@ public class AuthServiceTest {
     }
 
     @Test
-    void testMemberLoginNotMatch() {
+    void testMemberLoginByEmailPasswordNotMatch() {
         assertThrows(ResponseStatusException.class, () -> {
             authService.loginByEmailAndPassword(
                     new AuthRequest("syakirlongoi@gmail.com", "123rahasia"));
         });
+    }
+
+    @Test
+    void testStaffLoginByEmailPasswordSuccess() {
+        AuthResponse result = authService.loginByEmailAndPassword(
+                new AuthRequest("khairy@gmail.com", "khairy123"));
+
+        assertNotNull(result.getToken());
+        assertNotNull(result.getTokenExpired());
     }
 }
