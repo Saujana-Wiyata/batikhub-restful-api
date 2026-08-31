@@ -17,6 +17,6 @@ public interface StaffService {
 
     StaffResponse update(@NotBlank String token, @Valid StaffUpdateRequest staffReq);
 
-    void delete(@Valid String id);
+    void delete(@Valid String token);
 
 }

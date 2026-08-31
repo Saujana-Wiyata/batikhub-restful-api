@@ -68,8 +68,8 @@ public class StaffServiceImpl implements StaffService {
 
     @Override
     @Transactional
-    public void delete(@Valid String id) {
-        Staff staff = staffRepository.findById(id)
+    public void delete(@Valid String token) {
+        Staff staff = staffRepository.findByToken(token)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.UNAUTHORIZED,
                         "Fail to delete your account"));
 
