@@ -1,15 +1,20 @@
 package com.ecommerce.web.jpa.e_commerce_web_jpa.service.staff;
 
-import java.util.List;
 import java.util.UUID;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.validation.annotation.Validated;
+import org.springframework.web.server.ResponseStatusException;
 
-import com.ecommerce.web.jpa.e_commerce_web_jpa.dto.staff.StaffRequestDTO;
-import com.ecommerce.web.jpa.e_commerce_web_jpa.dto.staff.StaffUpdateDTO;
 import com.ecommerce.web.jpa.e_commerce_web_jpa.entities.Staff;
 import com.ecommerce.web.jpa.e_commerce_web_jpa.entities.enums.Role;
+import com.ecommerce.web.jpa.e_commerce_web_jpa.model.staff.StaffRequest;
+import com.ecommerce.web.jpa.e_commerce_web_jpa.model.staff.StaffResponse;
+import com.ecommerce.web.jpa.e_commerce_web_jpa.model.staff.StaffUpdateRequest;
 import com.ecommerce.web.jpa.e_commerce_web_jpa.repositories.StaffRepository;
 
 import jakarta.validation.Valid;
@@ -24,7 +29,8 @@ public class StaffServiceImpl implements StaffService {
     private final StaffRepository staffRepository;
 
     @Override
-    public void insert(@Valid StaffRequestDTO staffReq) {
+    @Transactional
+    public void insert(@Valid StaffRequest staffReq) {
 
         String geenerateId = UUID.randomUUID().toString()
                 .substring(0, 8);
@@ -36,21 +42,12 @@ public class StaffServiceImpl implements StaffService {
     }
 
     @Override
-    public Staff findByEmailAndPassword(@NotBlank String email, @NotBlank String password) {
+    @Transactional
+    public StaffResponse update(@NotBlank String token, @Valid StaffUpdateRequest staffReq) {
 
-        return staffRepository.findByEmailAndPassword(email, password);
-
-    }
-
-    @Override
-    public Staff findById(@NotBlank String idStaff) {
-        return staffRepository.findById(idStaff).orElse(null);
-    }
-
-    @Override
-    public Staff update(@NotBlank String id, @Valid StaffUpdateDTO staffReq) {
-
-        Staff staff = staffRepository.findById(id).orElse(null);
+        Staff staff = staffRepository.findByToken(token)
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.BAD_REQUEST,
+                        "Fail to delete your account"));
 
         if (!staffReq.getName().isBlank())
             staff.setName(staffReq.getName());
@@ -61,19 +58,36 @@ public class StaffServiceImpl implements StaffService {
         if (!staffReq.getPassword().isBlank())
             staff.setPassword(staffReq.getPassword());
 
-        return staffRepository.save(staff);
+        if (!staffReq.getRole().isBlank())
+            staff.setRole(Role.valueOf(staffReq.getRole()));
+
+        Staff staffSave = staffRepository.save(staff);
+
+        return new StaffResponse(staffSave.getName(), staffSave.getEmail(), staff.getRole());
     }
 
     @Override
+    @Transactional
     public void delete(@Valid String id) {
-        Staff staff = staffRepository.findById(id).orElse(null);
+        Staff staff = staffRepository.findById(id)
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.UNAUTHORIZED,
+                        "Fail to delete your account"));
 
         staffRepository.delete(staff);
     }
 
     @Override
-    public List<Staff> findAll() {
-        return staffRepository.findAll();
+    @Transactional(readOnly = true)
+    public Page<StaffResponse> findAll() {
+
+        PageRequest paging = PageRequest.of(0, 5);
+
+        return staffRepository.findAll(paging)
+                .map(t -> StaffResponse.builder()
+                        .name(t.getName())
+                        .email(t.getEmail())
+                        .role(t.getRole())
+                        .build());
     }
 
 }
