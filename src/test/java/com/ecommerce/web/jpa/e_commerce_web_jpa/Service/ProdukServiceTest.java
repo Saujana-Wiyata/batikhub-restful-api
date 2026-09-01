@@ -3,18 +3,19 @@ package com.ecommerce.web.jpa.e_commerce_web_jpa.service;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.List;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.domain.Page;
 import org.springframework.mock.web.MockMultipartFile;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.server.ResponseStatusException;
 
-import com.ecommerce.web.jpa.e_commerce_web_jpa.dto.produk.ProdukInsertDTO;
-import com.ecommerce.web.jpa.e_commerce_web_jpa.dto.produk.ProdukUpdateDTO;
-import com.ecommerce.web.jpa.e_commerce_web_jpa.entities.Produk;
+import com.ecommerce.web.jpa.e_commerce_web_jpa.model.produk.ProdukInsertRequest;
+import com.ecommerce.web.jpa.e_commerce_web_jpa.model.produk.ProdukResponse;
+import com.ecommerce.web.jpa.e_commerce_web_jpa.model.produk.ProdukUpdateRequest;
 import com.ecommerce.web.jpa.e_commerce_web_jpa.service.produk.ProdukService;
 
 import jakarta.validation.ConstraintViolationException;
@@ -37,8 +38,8 @@ public class ProdukServiceTest {
                 "image/png", // tipe file
                 allBytes); // byteFile
 
-        ProdukInsertDTO produk = new ProdukInsertDTO();
-        produk.setId("BTK-345-K");
+        ProdukInsertRequest produk = new ProdukInsertRequest();
+        produk.setId("BTK-123-K");
         produk.setNama("Kain Mega Mendung");
         produk.setStock(10);
         produk.setHarga(13.46);
@@ -49,14 +50,24 @@ public class ProdukServiceTest {
     }
 
     @Test
-    void testInsertFail() {
+    void testInsertFail() throws IOException {
 
-        ProdukInsertDTO produk = new ProdukInsertDTO();
-        produk.setId("BTK-345-K");
+        Path of = Path.of("batikhub-erd.png");
+        byte[] allBytes = Files.readAllBytes(of);
+
+        MultipartFile mockMultipartFile = new MockMultipartFile(
+                "gambar", // nama field
+                "batikhub-erd.png", // nama file asli
+                "image/png", // tipe file
+                allBytes); // byteFile
+
+        ProdukInsertRequest produk = new ProdukInsertRequest();
+        produk.setId("A01");
         produk.setNama("Kain Mega Mendung");
-        produk.setStock(-10);
-        produk.setHarga(13.46);
+        produk.setStock(10);
+        produk.setHarga(-13.46);
         produk.setProductCategory("KAIN");
+        produk.setGambar(mockMultipartFile);
 
         Assertions.assertThrows(ConstraintViolationException.class, () -> {
             produkService.insert(produk);
@@ -65,17 +76,17 @@ public class ProdukServiceTest {
 
     @Test
     void testFindById() {
-        Produk byId = produkService.findById("BTK-345-K");
+        ProdukResponse byId = produkService.findById("BTK-345-K");
 
         Assertions.assertNotNull(byId);
         Assertions.assertEquals(byId.getHarga(), 13.46);
     }
 
     @Test
-    void testFindByIdNootFound() {
-        Produk byId = produkService.findById("kl543");
-
-        Assertions.assertNull(byId);
+    void testFindByIdNotFound() {
+        Assertions.assertThrows(ResponseStatusException.class, () -> {
+            produkService.findById("kl543");
+        });
     }
 
     @Test
@@ -86,17 +97,17 @@ public class ProdukServiceTest {
     }
 
     @Test
-    void testReduceStock() {
-        produkService.kurangiStock(3, "A01");
+    void testReduceStockSuccess() {
+        produkService.kurangiStock(3, "BTK-345-K");
 
-        Assertions.assertEquals(produkService.findById("A01").getStock(), 7);
+        Assertions.assertEquals(produkService.findById("BTK-345-K").getStock(), 7);
     }
 
     @Test
     void testReduceStockBlankIdAndMinusStock() {
         Assertions.assertThrows(ConstraintViolationException.class, () -> {
-            produkService.kurangiStock(3, " ");
-            produkService.kurangiStock(-3, "A01");
+            produkService.kurangiStock(3, " "); // id blank
+            produkService.kurangiStock(-3, "A01"); // minus stock
         });
     }
 
@@ -107,16 +118,18 @@ public class ProdukServiceTest {
 
     @Test
     void testFindAllByNamaLikeFounded() {
-        List<Produk> byNama = produkService.findByNama("Kemeja");
+        Page<ProdukResponse> byNama = produkService.findByNama("Kain");
 
-        Assertions.assertEquals(byNama.size(), 1);
+        Assertions.assertEquals(byNama.getNumberOfElements(), 2);
+        Assertions.assertEquals(byNama.getSize(), 6);
     }
 
     @Test
     void testFindAllByNamaLikeButNotFound() {
-        List<Produk> byNama = produkService.findByNama(" Mouse");
+        Page<ProdukResponse> byNama = produkService.findByNama("Mouse");
 
-        Assertions.assertEquals(byNama.size(), 0);
+        Assertions.assertEquals(byNama.getSize(), 6);
+        Assertions.assertEquals(byNama.getNumberOfElements(), 0);
     }
 
     @Test
@@ -128,46 +141,48 @@ public class ProdukServiceTest {
 
     @Test
     void testFIndAll() {
-        List<Produk> all = produkService.findAll();
-        Assertions.assertEquals(all.size(), 3);
+        Page<ProdukResponse> all = produkService.findAll();
+
+        Assertions.assertEquals(all.getTotalElements(), 2);
+        Assertions.assertEquals(all.getSize(), 6);
     }
 
     @Test
     void testUpdateSuccess() {
-        ProdukUpdateDTO produk = new ProdukUpdateDTO();
+        ProdukUpdateRequest produk = new ProdukUpdateRequest();
         produk.setNama("Kemeja Batik Biru");
         produk.setProductCategory("");
-        produk.setStock(5);
+        produk.setStock(5); // +5
         produk.setHarga(0.0);
 
-        Produk update = produkService.update("A02", produk);
+        ProdukResponse update = produkService.update("BTK-345-K", produk);
 
-        Assertions.assertEquals(update.getStock(), 11);
+        Assertions.assertEquals(update.getStock(), 12);
         Assertions.assertEquals(update.getNama(), "Kemeja Batik Biru");
-        Assertions.assertEquals(update.getHarga(), 26.25);
+        Assertions.assertEquals(update.getHarga(), 13.46);
     }
 
     @Test
     void testUpdateFail() {
-        ProdukUpdateDTO produk = new ProdukUpdateDTO();
+        ProdukUpdateRequest produk = new ProdukUpdateRequest();
         produk.setNama("Kemeja Batik Biru");
         produk.setProductCategory("");
         produk.setStock(5);
         produk.setHarga(0.0);
 
-        Assertions.assertThrows(Exception.class, () -> {
+        Assertions.assertThrows(ResponseStatusException.class, () -> {
             produkService.update("A2", produk);
         });
     }
 
     @Test
     void testDeleteSuccess() {
-        produkService.delete("A01");
+        produkService.delete("BTK-345-K");
     }
 
     @Test
     void testDeleteFail() {
-        Assertions.assertThrows(Exception.class, () -> {
+        Assertions.assertThrows(ResponseStatusException.class, () -> {
             produkService.delete("A01");
         });
     }
