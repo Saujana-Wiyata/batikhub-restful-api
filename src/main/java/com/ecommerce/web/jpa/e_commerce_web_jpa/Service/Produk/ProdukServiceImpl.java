@@ -1,15 +1,20 @@
 package com.ecommerce.web.jpa.e_commerce_web_jpa.service.produk;
 
 import java.io.IOException;
-import java.util.List;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.validation.annotation.Validated;
+import org.springframework.web.server.ResponseStatusException;
 
-import com.ecommerce.web.jpa.e_commerce_web_jpa.dto.produk.ProdukInsertDTO;
-import com.ecommerce.web.jpa.e_commerce_web_jpa.dto.produk.ProdukUpdateDTO;
 import com.ecommerce.web.jpa.e_commerce_web_jpa.entities.Produk;
 import com.ecommerce.web.jpa.e_commerce_web_jpa.entities.enums.ProductCategory;
+import com.ecommerce.web.jpa.e_commerce_web_jpa.model.produk.ProdukInsertRequest;
+import com.ecommerce.web.jpa.e_commerce_web_jpa.model.produk.ProdukResponse;
+import com.ecommerce.web.jpa.e_commerce_web_jpa.model.produk.ProdukUpdateRequest;
 import com.ecommerce.web.jpa.e_commerce_web_jpa.repositories.ProdukRepository;
 
 import jakarta.validation.Valid;
@@ -24,10 +29,19 @@ public class ProdukServiceImpl implements ProdukService {
 
     private final ProdukRepository produkRepository;
 
+    private String checkId(String id) {
+        if (produkRepository.existsById(id)) {
+            throw new ResponseStatusException(HttpStatus.CONFLICT, "ID already exist");
+        } else {
+            return id;
+        }
+    }
+
     @Override
-    public void insert(@Valid ProdukInsertDTO produk) {
+    @Transactional
+    public void insert(@Valid ProdukInsertRequest produk) {
         Produk produkEntity = new Produk();
-        produkEntity.setId(produk.getId());
+        produkEntity.setId(checkId(produk.getId()));
         produkEntity.setNama(produk.getNama());
         produkEntity.setStock(produk.getStock());
         produkEntity.setHarga(produk.getHarga());
@@ -36,15 +50,20 @@ public class ProdukServiceImpl implements ProdukService {
         try {
             produkEntity.setGambar(produk.getGambar().getBytes());
         } catch (IOException e) {
-            throw new RuntimeException("gambar tidak bisa di-upload");
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "gambar tidak bisa di-upload");
         }
 
         produkRepository.save(produkEntity);
     }
 
     @Override
-    public Produk findById(@NotBlank String id) {
-        return produkRepository.findById(id).orElse(null);
+    @Transactional
+    public ProdukResponse findById(@NotBlank String id) {
+        Produk produk = produkRepository.findById(id)
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "your product not found"));
+
+        return new ProdukResponse(produk.getId(), produk.getNama(), produk.getStock(),
+                produk.getHarga(), produk.getProductCategory(), produk.getGambar());
     }
 
     @Override
@@ -53,19 +72,43 @@ public class ProdukServiceImpl implements ProdukService {
     }
 
     @Override
-    public List<Produk> findByNama(@NotBlank String nameProduk) {
-        return produkRepository.findAllByNamaLike("%" + nameProduk + "%");
+    public Page<ProdukResponse> findByNama(@NotBlank String nameProduk) {
+
+        PageRequest paging = PageRequest.of(0, 6);
+
+        return produkRepository.findAllByNamaLike("%" + nameProduk + "%", paging)
+                .map(produk -> ProdukResponse.builder()
+                        .idProduct(produk.getId())
+                        .nama(produk.getNama())
+                        .stock(produk.getStock())
+                        .harga(produk.getHarga())
+                        .productCategory(produk.getProductCategory())
+                        .gambar(produk.getGambar())
+                        .build());
     }
 
     @Override
-    public List<Produk> findAll() {
-        return produkRepository.findAll();
+    @Transactional(readOnly = true)
+    public Page<ProdukResponse> findAll() {
+
+        PageRequest paging = PageRequest.of(0, 6);
+
+        return produkRepository.findAll(paging)
+                .map(produk -> ProdukResponse.builder()
+                        .idProduct(produk.getId())
+                        .nama(produk.getNama())
+                        .stock(produk.getStock())
+                        .harga(produk.getHarga())
+                        .productCategory(produk.getProductCategory())
+                        .gambar(produk.getGambar())
+                        .build());
     }
 
     @Override
-    public Produk update(@NotBlank String id, ProdukUpdateDTO produk) {
+    public ProdukResponse update(@NotBlank String id, ProdukUpdateRequest produk) {
 
-        Produk produkFindId = produkRepository.findById(id).orElse(null);
+        Produk produkFindId = produkRepository.findById(id)
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "product not found"));
 
         if (!produk.getNama().isBlank())
             produkFindId.setNama(produk.getNama());
@@ -83,20 +126,24 @@ public class ProdukServiceImpl implements ProdukService {
             produkFindId.setProductCategory(ProductCategory
                     .valueOf(produk.getProductCategory()));
 
-        if (produk.getGambar() != null && !produk.getGambar().isEmpty()) {
+        if (produk.getGambar() != null && !produk.getGambar().isEmpty()
+                && produk.getGambar().getSize() > 100) {
             try {
                 produkFindId.setGambar(produk.getGambar().getBytes());
             } catch (IOException e) {
-                throw new RuntimeException("fail update gambar");
+                throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "fail to update gambar");
             }
         }
+        Produk save = produkRepository.save(produkFindId);
 
-        return produkRepository.save(produkFindId);
+        return new ProdukResponse(save.getId(), save.getNama(), save.getStock(),
+                save.getHarga(), save.getProductCategory(), save.getGambar());
     }
 
     @Override
     public void delete(@NotBlank String id) {
-        Produk produk = produkRepository.findById(id).orElse(null);
+        Produk produk = produkRepository.findById(id)
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.BAD_REQUEST, "fail to delete the product"));
         produkRepository.delete(produk);
     }
 

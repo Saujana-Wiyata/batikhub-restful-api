@@ -1,10 +1,10 @@
 package com.ecommerce.web.jpa.e_commerce_web_jpa.service.produk;
 
-import java.util.List;
+import org.springframework.data.domain.Page;
 
-import com.ecommerce.web.jpa.e_commerce_web_jpa.dto.produk.ProdukInsertDTO;
-import com.ecommerce.web.jpa.e_commerce_web_jpa.dto.produk.ProdukUpdateDTO;
-import com.ecommerce.web.jpa.e_commerce_web_jpa.entities.Produk;
+import com.ecommerce.web.jpa.e_commerce_web_jpa.model.produk.ProdukInsertRequest;
+import com.ecommerce.web.jpa.e_commerce_web_jpa.model.produk.ProdukResponse;
+import com.ecommerce.web.jpa.e_commerce_web_jpa.model.produk.ProdukUpdateRequest;
 
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotBlank;
@@ -12,17 +12,17 @@ import jakarta.validation.constraints.Positive;
 
 public interface ProdukService {
 
-    void insert(@Valid ProdukInsertDTO produk);
+    void insert(@Valid ProdukInsertRequest produk);
 
-    Produk findById(@NotBlank String id);
+    ProdukResponse findById(@NotBlank String id);
 
     void kurangiStock(@Positive int jmlhPembelian, @NotBlank String idProduk);
 
-    List<Produk> findByNama(@NotBlank String nameProduk);
+    Page<ProdukResponse> findByNama(@NotBlank String nameProduk);
 
-    List<Produk> findAll();
+    Page<ProdukResponse> findAll();
 
-    Produk update(@NotBlank String id, ProdukUpdateDTO produk);
+    ProdukResponse update(@NotBlank String id, ProdukUpdateRequest produk);
 
     void delete(@NotBlank String id);
 
