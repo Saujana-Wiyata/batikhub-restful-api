@@ -1,7 +1,7 @@
 package com.ecommerce.web.jpa.e_commerce_web_jpa.repositories;
 
-import java.util.List;
-
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -19,6 +19,6 @@ public interface ProdukRepository extends JpaRepository<Produk, String> {
     void reduceStock(int stockPembelian, @Param("id") String idProduk);
 
     @Transactional
-    List<Produk> findAllByNamaLike(String nama);
+    Page<Produk> findAllByNamaLike(String nama, Pageable pageable);
 
 }
