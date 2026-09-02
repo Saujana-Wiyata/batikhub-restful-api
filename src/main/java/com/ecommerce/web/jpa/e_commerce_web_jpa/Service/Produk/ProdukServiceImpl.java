@@ -122,9 +122,14 @@ public class ProdukServiceImpl implements ProdukService {
             produkFindId.setStock(produkFindId.getStock() +
                     produk.getStock());
 
-        if (!produk.getProductCategory().isBlank())
-            produkFindId.setProductCategory(ProductCategory
-                    .valueOf(produk.getProductCategory()));
+        if (!produk.getProductCategory().isBlank()) {
+            try {
+                produkFindId.setProductCategory(ProductCategory
+                        .valueOf(produk.getProductCategory()));
+            } catch (Exception e) {
+                throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "category is invalid");
+            }
+        }
 
         if (produk.getGambar() != null && !produk.getGambar().isEmpty()
                 && produk.getGambar().getSize() > 100) {

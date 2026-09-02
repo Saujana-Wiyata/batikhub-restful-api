@@ -58,8 +58,13 @@ public class StaffServiceImpl implements StaffService {
         if (!staffReq.getPassword().isBlank())
             staff.setPassword(staffReq.getPassword());
 
-        if (!staffReq.getRole().isBlank())
-            staff.setRole(Role.valueOf(staffReq.getRole()));
+        if (!staffReq.getRole().isBlank()) {
+            try {
+                staff.setRole(Role.valueOf(staffReq.getRole()));
+            } catch (Exception e) {
+                throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "role invalid");
+            }
+        }
 
         Staff staffSave = staffRepository.save(staff);
 
