@@ -40,7 +40,7 @@ public class Member {
     @Column(name = "token_expired")
     private String tokenExpired;
 
-    @OneToMany(mappedBy = "idMember")
+    @OneToMany(mappedBy = "tokenMember")
     // @Column(name = "transaksi")
     private List<Transaksi> listTransaksi;
 

@@ -37,8 +37,8 @@ public class Transaksi {
     private LocalDate arrivalDate;
 
     @ManyToOne
-    @JoinColumn(name = "id_member", referencedColumnName = "id")
-    private Member idMember;
+    @JoinColumn(name = "token_member", referencedColumnName = "id")
+    private Member tokenMember;
 
     @ManyToOne
     @JoinColumn(name = "id_produk", referencedColumnName = "id")
