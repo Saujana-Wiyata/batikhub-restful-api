@@ -1,15 +1,14 @@
 package com.ecommerce.web.jpa.e_commerce_web_jpa.service;
 
-import java.time.LocalDate;
-import java.util.List;
-
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.domain.Page;
+import org.springframework.web.server.ResponseStatusException;
 
-import com.ecommerce.web.jpa.e_commerce_web_jpa.dto.transaksi.TransaksiInsertDTO;
-import com.ecommerce.web.jpa.e_commerce_web_jpa.entities.Transaksi;
+import com.ecommerce.web.jpa.e_commerce_web_jpa.model.transaksi.TransaksiInsertRequest;
+import com.ecommerce.web.jpa.e_commerce_web_jpa.model.transaksi.TransaksiResponse;
 import com.ecommerce.web.jpa.e_commerce_web_jpa.service.transaksi.TransaksiService;
 
 import jakarta.validation.ConstraintViolationException;
@@ -22,24 +21,20 @@ public class TransaksiServiceTest {
 
     @Test
     void testInsertSuccess() {
-        TransaksiInsertDTO transaksiInsertDTO = new TransaksiInsertDTO();
-        transaksiInsertDTO.setTotalPembelian(1);
-        transaksiInsertDTO.setPurchaseDate(LocalDate.now());
-        transaksiInsertDTO.setArrivalDate(LocalDate.now().plusDays(3));
-        transaksiInsertDTO.setIdProduk("A02");
-        transaksiInsertDTO.setIdMember("80a542");
+        TransaksiInsertRequest transaksiInsertDTO = new TransaksiInsertRequest();
+        transaksiInsertDTO.setTotalPembelian(3);
+        transaksiInsertDTO.setIdProduk("BTK-123-K");
+        transaksiInsertDTO.setTokenMember("48e83a");
 
         transaksiService.insert(transaksiInsertDTO);
     }
 
     @Test
     void testInsertFail() {
-        TransaksiInsertDTO transaksiInsertDTO = new TransaksiInsertDTO();
-        transaksiInsertDTO.setTotalPembelian(1);
-        transaksiInsertDTO.setPurchaseDate(LocalDate.now());
-        transaksiInsertDTO.setArrivalDate(LocalDate.now().minusDays(3));
-        transaksiInsertDTO.setIdProduk("BTK-345-K");
-        transaksiInsertDTO.setIdMember("a757eb");
+        TransaksiInsertRequest transaksiInsertDTO = new TransaksiInsertRequest();
+        transaksiInsertDTO.setTotalPembelian(-1);
+        transaksiInsertDTO.setIdProduk("");
+        transaksiInsertDTO.setTokenMember(" ");
 
         Assertions.assertThrows(ConstraintViolationException.class, () -> {
             transaksiService.insert(transaksiInsertDTO);
@@ -48,54 +43,34 @@ public class TransaksiServiceTest {
 
     @Test
     void testInsertFKNotFound() {
-        TransaksiInsertDTO transaksiInsertDTO = new TransaksiInsertDTO();
+        TransaksiInsertRequest transaksiInsertDTO = new TransaksiInsertRequest();
         transaksiInsertDTO.setTotalPembelian(1);
-        transaksiInsertDTO.setPurchaseDate(LocalDate.now());
-        transaksiInsertDTO.setArrivalDate(LocalDate.now().minusDays(3));
-        transaksiInsertDTO.setIdProduk("BTK-345-K");
-        transaksiInsertDTO.setIdMember("AHHAHA");
+        transaksiInsertDTO.setIdProduk("BTK-123-K");
+        transaksiInsertDTO.setTokenMember("AHHAHA");
 
-        Assertions.assertThrows(Exception.class, () -> {
+        Assertions.assertThrows(ResponseStatusException.class, () -> {
             transaksiService.insert(transaksiInsertDTO);
         });
     }
 
     @Test
+    void testFindAll() {
+        Page<TransaksiResponse> all = transaksiService.findAll();
+
+        Assertions.assertEquals(1, all.getTotalElements());
+        Assertions.assertEquals(5, all.getSize());
+    }
+
+    @Test
     void testDeleteSuccess() {
-        transaksiService.delete(6);
+        transaksiService.delete(7);
     }
 
     @Test
     void testDeleteFail() {
-        Assertions.assertThrows(Exception.class, () -> {
+        Assertions.assertThrows(ResponseStatusException.class, () -> {
             transaksiService.delete(2);
         });
     }
 
-    @Test
-    void testFindAll() {
-        List<Transaksi> all = transaksiService.findAll();
-        Assertions.assertEquals(all.size(), 2);
-    }
-
-    @Test
-    void testFindByIdSuccess() {
-        Transaksi byId = transaksiService.findById(5);
-
-        Assertions.assertNotNull(byId);
-        Assertions.assertEquals(byId.getIdMember().getName(), "Aidil Syahmi");
-    }
-
-    @Test
-    void testFindByIdFail() {
-        Transaksi byId = transaksiService.findById(2);
-        Assertions.assertNull(byId);
-    }
-
-    @Test
-    void testFindByIdMinus() {
-        Assertions.assertThrows(ConstraintViolationException.class, () -> {
-            transaksiService.findById(-7);
-        });
-    }
 }
