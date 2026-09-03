@@ -1,17 +1,21 @@
 package com.ecommerce.web.jpa.e_commerce_web_jpa.service.omset;
 
-import java.util.List;
-
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.validation.annotation.Validated;
+import org.springframework.web.server.ResponseStatusException;
 
-import com.ecommerce.web.jpa.e_commerce_web_jpa.dto.omset.OmsetDTO;
 import com.ecommerce.web.jpa.e_commerce_web_jpa.entities.Omset;
 import com.ecommerce.web.jpa.e_commerce_web_jpa.entities.Produk;
+import com.ecommerce.web.jpa.e_commerce_web_jpa.model.omset.OmsetPerProduk;
+import com.ecommerce.web.jpa.e_commerce_web_jpa.model.omset.OmsetRequest;
+import com.ecommerce.web.jpa.e_commerce_web_jpa.model.omset.OmsetResponse;
 import com.ecommerce.web.jpa.e_commerce_web_jpa.repositories.OmsetRespository;
 import com.ecommerce.web.jpa.e_commerce_web_jpa.repositories.ProdukRepository;
 
-import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Positive;
@@ -28,10 +32,11 @@ public class OmsetServiceImpl implements OmsetService {
 
     @Override
     @Transactional
-    public void insert(@Valid OmsetDTO omset) {
+    public void insert(@Valid OmsetRequest omset) {
 
-        Produk produk = produkRepository.findById(omset.getIdProduk().getId())
-                .orElse(null);
+        Produk produk = produkRepository.findById(omset.getIdProduk())
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.BAD_GATEWAY,
+                        "fail to calculate into omset"));
 
         Omset omsetEntity = new Omset();
         omsetEntity.setIdProduk(produk);
@@ -40,46 +45,28 @@ public class OmsetServiceImpl implements OmsetService {
         omsetRespository.save(omsetEntity);
     }
 
-    private void breakRelation(Omset omset) {
-        omset.getIdProduk().setOmset(null);
-        omset.setIdProduk(null);
-    }
-
-    // TODO: delete thie method because we dont use it in controller
-    @Override
-    public void delete(@Positive int id) {
-        Omset omset = omsetRespository.findById(id).orElse(null);
-
-        breakRelation(omset);
-
-        omsetRespository.save(omset);
-
-        omsetRespository.delete(omset);
-    }
-
     @Override
     public void tambahJumlahPenjualan(@Positive int jumlahPembelian, @NotBlank String idProduk) {
         omsetRespository.tambahJumlahPenjualan(jumlahPembelian, idProduk);
     }
 
     @Override
-    public Double jumlahHargaPerProduk(@NotBlank String idProduk) {
-        return omsetRespository.jumlahHargaPerProduk(idProduk);
-    }
+    @Transactional(readOnly = true)
+    public Page<OmsetResponse> findAll() {
 
-    @Override
-    public Double totalKeseluruhanOmset() {
-        return omsetRespository.jumlahOmset();
-    }
+        PageRequest page = PageRequest.of(0, 5);
 
-    @Override
-    public Integer totalProdukTerjual() {
-        return omsetRespository.jumlahProdukTerjual();
-    }
-
-    @Override
-    public List<Omset> findAll() {
-        return omsetRespository.findAll();
+        return omsetRespository.findAll(page)
+                .map(omset -> OmsetResponse.builder()
+                        .omset(omsetRespository.jumlahOmset())
+                        .totalProductSoldout(omsetRespository.jumlahProdukTerjual())
+                        .omsetPerproduct(
+                                new OmsetPerProduk(
+                                        omset.getIdProduk().getId(),
+                                        omset.getIdProduk().getNama(),
+                                        omsetRespository.jumlahHargaPerProduk(omset.getIdProduk().getId()),
+                                        omsetRespository.jumlahPerProdukTerjual(omset.getIdProduk().getId())))
+                        .build());
     }
 
 }
