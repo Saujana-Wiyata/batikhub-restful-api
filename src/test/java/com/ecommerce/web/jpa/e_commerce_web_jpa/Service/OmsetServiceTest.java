@@ -61,5 +61,15 @@ public class OmsetServiceTest {
         Assertions.assertEquals(2, all.getTotalElements());
         Assertions.assertEquals(2, all.getContent().size());
 
+        all.getContent().forEach(t -> {
+            Assertions.assertEquals((7 * 13.46) + (10.69 * 5), t.getOmset());
+            Assertions.assertEquals(7 + 5, t.getTotalProductSoldout());
+            System.out.println("id produk : " + t.getOmsetPerproduct().getIdProduct());
+            System.out.println("nama produk : " + t.getOmsetPerproduct().getProductName());
+            System.out.println("omset per produk : " + t.getOmsetPerproduct().getOmsetPerProduk());
+            System.out.println("produk terjual : " + t.getOmsetPerproduct().getTotalItemsSoldOut());
+            System.out.println("-----------------------------------------");
+        });
+
     }
 }
