@@ -38,12 +38,11 @@ Request Header:
 Request Body :
 ```json
 {
-    "idProduct" : "A002",
-    "nama" : "Kain Mega Mendung", 
+    "nama" : "", 
     "stock" : 15, // want to updated
-    "harga" : 12.56,
-    "productCategory" : "KAIN",
-    "gambar" : "298109" // byte
+    "harga" : 0.0,
+    "productCategory" : "",
+    "gambar" : ""/null // byte
 }
 ```
 

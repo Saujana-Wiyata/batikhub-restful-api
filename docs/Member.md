@@ -43,13 +43,13 @@ Request Body :
 ```Json
 {
     // fill the part you want to update only
-    "name" : "Saujana Wiyata",
+    "name" : "",
     "email" : "jana@gmail.com", // <- want to update
-    "password" : "rahasia123",
+    "password" : "",
     "alamat" : {
-        "jalan" : "jalan ABC",
-        "kota" : "Jakarta Pusat", 
-        "provinsi" : "DKI Jakarta"
+        "jalan" : "",
+        "kota" : "", 
+        "provinsi" : ""
     }
 }
 ```

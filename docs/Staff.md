@@ -39,9 +39,9 @@ Request Body :
 ```Json
 {
     // fill the part you want to update only
-    "name" : "Saujana Wiyata",
-    "email" : "jana@gmail.com",
-    "password" : "rahasia123",
+    "name" : "",
+    "email" : "",
+    "password" : "",
     "role" : "CEO" // <- want to update
 }
 ```
