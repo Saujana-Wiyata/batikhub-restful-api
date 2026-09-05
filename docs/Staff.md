@@ -1,11 +1,4 @@
-properties :
-- id
-- name
-- email
-- password
-- role
-- token
-- tokenExpired
+# Staff API Spec
 
 ## Insert
 Endpoint: POST /api/v1/staff

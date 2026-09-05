@@ -10,8 +10,6 @@ Request Body :
 ```Json
 {
     "total_pembelian" : 1,
-    "purchase_date" : "11-01-2010",
-    "arrival_date" : "17-01-2010",
     "id_pembeli" : "uoqwdu",
     "id_produk" : "A01"
 }
@@ -21,14 +19,7 @@ Response Body (success) :
 ```Json
 {
     "code" : 200,
-    "data" : {
-        "id" : "01",
-        "total_pembelian" : 1,
-        "purchase_date" : "11-01-2010",
-        "arrival_date" : "17-01-2010",
-        "id_pembeli" : "uoqwdu",
-        "id_produk" : "A01"
-    }
+    "data" : "OK"
 }
 ```
 

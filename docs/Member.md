@@ -1,12 +1,4 @@
 # Member API Docs Spec
-properties :
-- id
-- name
-- email
-- password
-- alamat (jalan, kota, provinsi)
-- token
-- tokenExpired
 
 ## Insert
 Endpoint: POST /api/v1/member

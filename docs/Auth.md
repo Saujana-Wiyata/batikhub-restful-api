@@ -1,9 +1,9 @@
 # Auth for Member & Staff
 
-## Login
-Endpoint : POST /api/v1/auth/login
+## Login By Email & Password
+Endpoint : POST /api/v1/auth/login-emailpassword
 
-Request Body (login by email & password): 
+Request Body : 
 ```json
 {
     "email" : "jana@gmail.com",
@@ -11,7 +11,27 @@ Request Body (login by email & password):
 }
 ```
 
-Request Body (login by id): 
+Response Body (Success): 
+```json
+{
+    "code" : 200,
+    "data" : {
+        "token" : "hwyd98w",
+        "tokenExpired" : "121557157572187" // milisecond
+    }
+}
+```
+Response Body (failed): 
+```json
+{
+    "code" : 401,
+    "error" : "Unauthorized"
+}
+```
+## Login By Id
+Endpoint : POST /api/v1/auth/login-id
+
+Request Body : 
 ```json
 {
     "id" : "ys98shiau98"
@@ -20,22 +40,23 @@ Request Body (login by id):
 Response Body (Success): 
 ```json
 {
-    "code" : 200
+    "code" : 200,
     "data" : {
         "token" : "hwyd98w",
-        "tokenExpired" : 121557157572187 // milisecond
+        "tokenExpired" : "121557157572187" // milisecond
     }
 }
 ```
 Response Body (failed): 
 ```json
 {
-    "code" : 405,
+    "code" : 401,
     "error" : "Unauthorized"
 }
 ```
+
 ## Logout
-Endpoint : POST /api/v1/auth/logout
+Endpoint : DELETE /api/v1/auth/logout
 
 Request Header : 
 - X-API-TOKEN : Token (Mandatory)
@@ -51,7 +72,7 @@ Response Body (Success):
 Response Body (Failed): 
 ```json
 {
-    "code" : 405,
+    "code" : 401,
     "data" : "Unauthorized"
 }
 ```

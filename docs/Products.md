@@ -5,17 +5,13 @@ Enpoint : POST /api/v1/products
 Request Header:
 - X-API-TOKEN : Token (Mandatory)
 
-Request Body :
-```json
-{
-    "idProduct" : "A002",
-    "nama" : "Kain Mega Mendung",
-    "stock" : 15,
-    "harga" : 12.56,
-    "productCategory" : "KAIN",
-    "gambar" : "298109" // byte
-}
-```
+Request Body (multipart/form-data) :
+- id : "BTK-631-KL"
+- nama : "Kain Motif Parang"
+- stock : 10
+- harga : 15.76
+- productCategory : "KAIN"
+- gambar : [file binary png/jpeg]
 
 Response Body (Success) : 
 ```json
@@ -34,7 +30,7 @@ Response Body (Failed) :
 ```
 
 ## Update
-Enpoint : PATCH /api/v1/products
+Enpoint : PATCH /api/v1/products/{id}
 
 Request Header:
 - X-API-TOKEN : Token (Mandatory)
@@ -124,13 +120,13 @@ Request Header :
     "paging" : {
         "currentPage": 0,
         "totalPage": 5,
-        "size": 5,
-        "totalElements": 25
+        "size": 6,
+        "totalElements": 30
     }
 }
 ```
 ## Search Product
-Endpoint : GET /api/v1/products/{id}
+Endpoint : GET /api/v1/products/search
 
 Query Param : 
 - productName : String
@@ -148,6 +144,13 @@ Request Header :
         "harga" : 10.00,
         "productCategory" : "BAJU",
         "gambar" : "298109" // byte
+    },
+
+    "paging" : {
+        "currentPage": 0,
+        "totalPage": 5,
+        "size": 6,
+        "totalElements": 30
     }
 }
 ```

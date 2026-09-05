@@ -1,11 +1,5 @@
 # Omset API Specs
 
-properties : 
-- omset
-- totalProductSold
-- omsetPerproduct (id, name, totalItemsSoldout, omset)
-- paging
-
 ## Take all information for dashboard
 Endpoints : GET /api/v1/omset/dashboard
 
