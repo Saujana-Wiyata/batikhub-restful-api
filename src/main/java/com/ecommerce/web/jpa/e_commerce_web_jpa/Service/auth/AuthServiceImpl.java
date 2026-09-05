@@ -103,9 +103,9 @@ public class AuthServiceImpl implements AuthService {
 
     @Override
     @Transactional
-    public void logout(String token) {
+    public AuthResponse logout(String token) {
 
-        memberLogout(token)
+        return memberLogout(token)
                 .or(() -> staffLogout(token))
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.UNAUTHORIZED, "Unauthorized"));
     }

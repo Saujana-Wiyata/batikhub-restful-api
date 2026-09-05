@@ -12,6 +12,6 @@ public interface AuthService {
 
     AuthResponse loginById(@NotBlank String id);
 
-    void logout(String token);
+    AuthResponse logout(String token);
 
 }
