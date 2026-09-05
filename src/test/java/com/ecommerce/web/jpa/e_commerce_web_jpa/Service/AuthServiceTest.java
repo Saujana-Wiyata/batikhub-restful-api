@@ -55,4 +55,52 @@ public class AuthServiceTest {
         assertNotNull(result.getToken());
         assertNotNull(result.getTokenExpired());
     }
+
+    @Test
+    void testLogoutStaffSuccess() {
+        authService.logout("3c3bbd");
+    }
+
+    @Test
+    void testLogoutStaffFail() {
+        assertThrows(ResponseStatusException.class, () -> {
+            authService.logout("123");
+        });
+    }
+
+    @Test
+    void testLogoutMemberSuccess() {
+        authService.logout("48e83a");
+    }
+
+    @Test
+    void testLogoutMemberFail() {
+        assertThrows(ResponseStatusException.class, () -> {
+            authService.logout("321");
+        });
+    }
+
+    @Test
+    void testLoginById() {
+        AuthResponse loginById = authService.loginById("c0ccbe");
+
+        assertNotNull(loginById.getToken());
+        assertNotNull(loginById.getTokenExpired());
+    }
+
+    @Test
+    void testLoginByIdFail() {
+
+        assertThrows(ResponseStatusException.class, () -> {
+            authService.loginById("abc123");
+        });
+    }
+
+    @Test
+    void testLoginByIdBlank() {
+
+        assertThrows(ConstraintViolationException.class, () -> {
+            authService.loginById(" ");
+        });
+    }
 }
