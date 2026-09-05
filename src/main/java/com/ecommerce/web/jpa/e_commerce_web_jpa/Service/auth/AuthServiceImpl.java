@@ -5,6 +5,7 @@ import java.util.UUID;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.server.ResponseStatusException;
 
@@ -13,8 +14,8 @@ import com.ecommerce.web.jpa.e_commerce_web_jpa.model.auth.AuthResponse;
 import com.ecommerce.web.jpa.e_commerce_web_jpa.repositories.MemberRepository;
 import com.ecommerce.web.jpa.e_commerce_web_jpa.repositories.StaffRepository;
 
-import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
+import jakarta.validation.constraints.NotBlank;
 import lombok.RequiredArgsConstructor;
 
 @Service
@@ -92,7 +93,8 @@ public class AuthServiceImpl implements AuthService {
     }
 
     @Override
-    public AuthResponse loginById(String id) {
+    @Transactional
+    public AuthResponse loginById(@NotBlank String id) {
 
         return memberLoginById(id)
                 .or(() -> staffLoginById(id))
@@ -100,6 +102,7 @@ public class AuthServiceImpl implements AuthService {
     }
 
     @Override
+    @Transactional
     public void logout(String token) {
 
         memberLogout(token)
